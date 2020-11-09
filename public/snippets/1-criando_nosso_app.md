@@ -43,7 +43,7 @@ npm install typescript @types/react -D
 
 4. Troque as extensões dos arquivos .js para .tsx, pois agora vamos começarmos a utilizar o typescript.
 
-6. No arquivo o arquivo /src/pages/_app, adicione a estrutura do typescript:
+6. No arquivo o arquivo pages/_app, adicione a estrutura do typescript:
 
 > Utilizamos o <Head> aqui para setar os atributos do cabeçalho da nossa página em todas as páginas.
 
@@ -78,7 +78,7 @@ return (
 ...
 ```
 
-8. Agora deixe a aparência do arquivo /src/pages/index.tsx do seguinte modo:
+8. Agora deixe a aparência do arquivo pages/index.tsx do seguinte modo:
 ```
 export default function Home() {
   return <h1>Hello World</h1>

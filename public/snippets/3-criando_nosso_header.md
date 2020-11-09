@@ -40,7 +40,7 @@ export default CustomerHeader;
 }
 ```
 
-8. Vamos começar a personalizar o nosso header. Para isso, adicione o seguinte código:
+6. Vamos começar a personalizar o nosso header. Para isso, adicione o seguinte código:
 
 ```ruby
 ...
@@ -59,7 +59,7 @@ import styles from '../../../../styles/Header.module.css';
 >
 > Assim conseguimos estilizar nosso componente, deixando-o bem didático e organizado!
 
-10. Vamos preparar nosso componente! Agora vamos usar um pouco do bootstrap e separar o conteúdo do CustomerHeader. Vamos colocar o seguinte código:
+7. Vamos preparar nosso componente! Agora vamos usar um pouco do bootstrap e separar o conteúdo do CustomerHeader. Vamos colocar o seguinte código:
 
 ```ruby
 import { Row, Col } from 'react-bootstrap';
@@ -74,7 +74,7 @@ import { Row, Col } from 'react-bootstrap';
 </Row>
 ```
 
-12. Agora vamos começar a construir nosso CustomerHeader colocando o input de pesquisa. Para isso, vamos colocar o seguinte código:
+8. Agora vamos começar a construir nosso CustomerHeader colocando o input de pesquisa. Para isso, vamos colocar o seguinte código:
 
 ```ruby
 import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
@@ -95,7 +95,7 @@ import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 </Row>
 ```
 
-13. Para os ícones, precisamos instalara o fontAwesome. Pare a aplicação e rode o seguinte comando:
+9. Para os ícones, precisamos instalara o fontAwesome. Pare a aplicação e rode o seguinte comando:
 
 > Para quem não sabe, o Font Awesome é uma biblioteca de ícones. Usaremos ela nos nossos ícones do painel admin e do footer, principalmente.
 
@@ -106,7 +106,7 @@ npm install --save @fortawesome/react-fontawesome
 npm install --save @fortawesome/free-brands-svg-icons
 ```
 
-14. Agora vamos adicionar nossos ícones no nosso CustomerHeader, aonde está a palavra "Ícones":
+10. Agora vamos adicionar nossos ícones no nosso CustomerHeader, aonde está a palavra "Ícones":
 
 ```ruby
 ...
@@ -129,7 +129,7 @@ import { faSearch, faShoppingCart, faUserCircle } from '@fortawesome/free-solid-
 </Row>
 ```
 
-15. Agora vamos criar nosso componente /components/shared/Logo, e dentro dele vamos criar o arquivo index.tsx com o conteúdo básico:
+11. Agora vamos criar nosso componente /components/shared/Logo, e dentro dele vamos criar o arquivo index.tsx com o conteúdo básico:
 
 ```ruby
 import React from 'react';
@@ -141,9 +141,9 @@ const Logo: React.FC = () => {
 export default Logo;
 ```
 
-16. Crie a pasta /public/assets e coloque nossas logos nessa pasta assets.
+12. Crie a pasta /public/assets e coloque nossas logos nessa pasta assets.
 
-17. Agora, no nosso componente /components/shared/Logo vamos importar a imagem e o componente Link, e a imagem, do nextjs:
+13. Agora, no nosso componente /components/shared/Logo vamos importar a imagem e o componente Link, e a imagem, do nextjs:
 
 ```ruby
 ...
@@ -155,7 +155,7 @@ import Image from 'next/image';
 ...
 ```
 
-18. Agora no nosso componente CustomerHeader, vamos importar nosso componente Logo, substituindo no lugar onde está escrito "Logo".
+14. Agora no nosso componente CustomerHeader, vamos importar nosso componente Logo, substituindo no lugar onde está escrito "Logo".
 
 ```ruby
 import Logo from '../../Logo';
@@ -163,7 +163,7 @@ import Logo from '../../Logo';
 <Logo />
 ```
 
-19. No /pages/_app.tsx, insira o seguinte código:
+15. No pages/_app.tsx, insira o seguinte código:
 
 ```ruby
 ...

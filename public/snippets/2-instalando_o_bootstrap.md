@@ -11,7 +11,7 @@ Nessa aula, vamos instalar o bootstrap ao nosso app.
 npm install react-bootstrap bootstrap
 ```
 
-2. No arquivo /src/pages/_app.tsx adicione as seguintes importações:
+2. No arquivo pages/_app.tsx adicione as seguintes importações:
 
 ```
 import 'bootstrap/dist/css/bootstrap.min.css';
