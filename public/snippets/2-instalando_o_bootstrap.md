@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 1. Crie o style /styles/globals.css, coloque o seguinte código setando as variáveis globais, a fonte padrão e a cor de texto padrão para white.
 
-```
+```css
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 :root {
