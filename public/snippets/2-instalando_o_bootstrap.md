@@ -1,3 +1,26 @@
+# 1. Introdução
+
+Nessa aula, vamos instalar o bootstrap ao nosso app.
+
+# 2. Conteúdo
+
+### Instalando o Bootstrap
+
+1. Rode na linha de comando:
+```
+npm install react-bootstrap bootstrap
+```
+
+2. No arquivo /src/pages/_app.tsx adicione as seguintes importações:
+
+```
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+### Setando o CSS global
+
+1. Crie o style /styles/globals.css, coloque o seguinte código setando as variáveis globais, a fonte padrão e a cor de texto padrão para white.
+
+```
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 :root {
@@ -22,12 +45,5 @@ body {
 body, .sticky-footer-wrapper {
     min-height:100vh;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+...
+```
