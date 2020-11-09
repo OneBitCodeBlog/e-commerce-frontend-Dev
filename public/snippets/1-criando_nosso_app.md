@@ -6,18 +6,22 @@ Nessa aula, vamos criar e configurar o básico do nosso app! Aqui vamos deixar o
 
 ## Dependências:
 
-### Npx 
-Instalação:
+1 - Instale o node + npm via asdf:
 
-- Mac/Ubuntu: sudo npm i -g npx
-- Windows: npm i -g npx
+```shell
+asdf plugin-add nodejs
+brew install gpg
+bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf install nodejs 15.0.1
+asdf global nodejs 15.0.1
+node -v
+```
 
-### Yarn
-Instalação: 
+2 - Instale o Yarn rodando:
 
-- Mac: https://classic.yarnpkg.com/en/docs/install/#mac-stable
-- Ubuntu: https://classic.yarnpkg.com/en/docs/install/#debian-stable
-- Windows: https://classic.yarnpkg.com/en/docs/install/#windows-stable
+```
+npm install --global yarn
+```
 
 ### Create-next-app
 
@@ -30,6 +34,7 @@ npm i create-next-app
 # 2. Conteúdo
 
 1. Crie o app com o seguinte comando:
+
 ```
 npx create-next-app web
 ```
@@ -47,7 +52,7 @@ npm install typescript @types/react -D
 
 > Utilizamos o <Head> aqui para setar os atributos do cabeçalho da nossa página em todas as páginas.
 
-```
+```jsx
 ...
 import React from 'react';
 import { AppProps } from 'next/app';
@@ -60,26 +65,26 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
 >Ele será responsável pelo Head da nossa página. Aqui colocaremos futuramente toda a parte de CEO dele, meta tags, etc.
 
-```
+```jsx
 ...
 import Head from 'next/head';
 
 ...
 return (
-  <div>
+  <>
     <Head>
       <title>OneBitGames</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
 
     <Component {...pageProps} />
-  </div>
+  </>
 )
 ...
 ```
 
 8. Agora deixe a aparência do arquivo pages/index.tsx do seguinte modo:
-```
+```jsx
 export default function Home() {
   return <h1>Hello World</h1>
 }
@@ -87,7 +92,7 @@ export default function Home() {
 
 9. E vamos adicionar a estrutura do typescript nele:
 
-```
+```jsx
 import React from 'react';
 
 ...
@@ -99,7 +104,7 @@ export default Home;
 
 10. No arquivo package.json na raiz do projeto, modifique o script "dev" por:
 
-```
+```jsx
 "dev": "next dev -p 3001",
 ```
 
