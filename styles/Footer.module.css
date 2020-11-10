@@ -1,0 +1,10 @@
+.background {
+    background-color: var(--color-primary);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.line {
+    background-color: rgba(245,245,245,0.3);
+}

@@ -7,18 +7,18 @@ Nessa aula, vamos construir nosso Header deslogado. Faremos uma rota para o usu�
 
 >Nessa pasta shared, criaremos nossos componentes que serão reutilizados por outros componentes.
 
-2. Agora vamos criar o nosso componente CustomerHeader.
+2. Agora vamos criar o nosso componente StorefrontHeader.
 
-3. Dentro da pasta shared/Header, crie a pasta CustomerHeader.
+3. Dentro da pasta shared/Header, crie a pasta StorefrontHeader.
 
 >No Header, vamos separar futuramente no Header deslogado, o header do cliente logado e o header do Admin, para futuramente reutilizar essas rotas.
 
-4. Agora vamos criar, dentro da pasta CustomerHeader, o arquivo index.tsx com o seguinte conteúdo:
+4. Agora vamos criar, dentro da pasta StorefrontHeader, o arquivo index.tsx com o seguinte conteúdo:
 
 ```ruby
 import React from 'react';
 
-const CustomerHeader: React.FC = () => {
+const StorefrontHeader: React.FC = () => {
     return (
         <div>
             Header
@@ -26,7 +26,7 @@ const CustomerHeader: React.FC = () => {
     )
 }
 
-export default CustomerHeader;
+export default StorefrontHeader;
 ```
 
 5. Crie o arquivo /styles/Header.module.css, com o seguinte conteúdo:
@@ -59,7 +59,7 @@ import styles from '../../../../styles/Header.module.css';
 >
 > Assim conseguimos estilizar nosso componente, deixando-o bem didático e organizado!
 
-7. Vamos preparar nosso componente! Agora vamos usar um pouco do bootstrap e separar o conteúdo do CustomerHeader. Vamos colocar o seguinte código:
+7. Vamos preparar nosso componente! Agora vamos usar um pouco do bootstrap e separar o conteúdo do StorefrontHeader. Vamos colocar o seguinte código:
 
 ```ruby
 import { Row, Col } from 'react-bootstrap';
@@ -74,7 +74,7 @@ import { Row, Col } from 'react-bootstrap';
 </Row>
 ```
 
-8. Agora vamos começar a construir nosso CustomerHeader colocando o input de pesquisa. Para isso, vamos colocar o seguinte código:
+8. Agora vamos começar a construir nosso StorefrontHeader colocando o input de pesquisa. Para isso, vamos colocar o seguinte código:
 
 ```ruby
 import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
@@ -106,7 +106,7 @@ npm install --save @fortawesome/react-fontawesome
 npm install --save @fortawesome/free-brands-svg-icons
 ```
 
-10. Agora vamos adicionar nossos ícones no nosso CustomerHeader, aonde está a palavra "Ícones":
+10. Agora vamos adicionar nossos ícones no nosso StorefrontHeader, aonde está a palavra "Ícones":
 
 ```ruby
 ...
@@ -161,7 +161,7 @@ import Image from 'next/image';
 ...
 ```
 
-14. Agora no nosso componente CustomerHeader, vamos importar nosso componente Logo, substituindo no lugar onde está escrito "Logo".
+14. Agora no nosso componente StorefrontHeader, vamos importar nosso componente Logo, substituindo no lugar onde está escrito "Logo".
 
 ```ruby
 import Logo from '../../Logo';
@@ -169,20 +169,37 @@ import Logo from '../../Logo';
 <Logo />
 ```
 
-15. No pages/_app.tsx, insira o seguinte código:
+15. Crie a pasta pages/Storefront, e dentro crie o arquivo index.tsx com a seguinte estrutura:
 
-```ruby
+```
+import React from 'react';
+
+const Storefront: React.FC = () => {
+    return(
+        <div className="d-flex flex-column sticky-footer-wrapper">
+
+        </div>
+    )
+}
+
+export default Storefront;
+```
+
+16. Dentro desse arquivo, adicione o seguinte código:
+
+```
 ...
-import Header from '../components/shared/Header/CustomerHeader';
+import Header from '../../components/shared/Header/StorefrontHeader';
 
 ...
 <Header />
 
 <div className="container flex-fill">
-    <Component {...pageProps} />
+    <h2>Storefront</h2>
 </div>
-...
 ```
+
+17. Acesse o localhost:3001/Storefront
 
 > Caso o background principal não consiga ser renderizado e esteja na cor branca, a causa é a ordem das importações no _app.tsx. Deixe-a com o css por último, como abaixo:
 
