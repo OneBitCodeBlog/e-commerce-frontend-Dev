@@ -1,7 +1,12 @@
 import React from 'react';
+import AdminComponent from '../components/shared/AdminComponent';
 
 const Home: React.FC = () => {
-  return <h1>Hello World</h1>
+    return (
+        <AdminComponent>
+            <h1>Painel Admin</h1>
+        </AdminComponent>
+    )
 }
 
 export default Home;
