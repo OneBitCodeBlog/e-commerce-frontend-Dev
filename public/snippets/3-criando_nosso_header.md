@@ -7,6 +7,32 @@ Nessa aula, vamos construir nosso Header deslogado. Faremos uma rota para o usu�
 
 >Nessa pasta shared, criaremos nossos componentes que serão reutilizados por outros componentes.
 
+2. Vamos criar nosso componente components/shared/MainComponent, e dentro criar o index.tsx com o seguinte conteúdo:
+
+>Aqui será renderizado nosso Footer e nosso Header, para criar nosso menu.
+
+```jsx
+import React from 'react';
+
+const MainComponent: React.FC = () => {
+    return (
+        <div className="d-flex flex-column sticky-footer-wrapper">
+
+        </div>
+    )
+}
+
+export default MainComponent;
+```
+
+3. Agora vamos renderizar o conteúdo que será encapsulado dentro do nosso MainComponent:
+
+```jsx
+const MainComponent: React.FC = ({ children }) => {
+...
+{ children }
+```
+
 2. Agora vamos criar o nosso componente StorefrontHeader.
 
 3. Dentro da pasta shared/Header, crie a pasta StorefrontHeader.
@@ -42,7 +68,7 @@ export default StorefrontHeader;
 
 6. Vamos começar a personalizar o nosso header. Para isso, adicione o seguinte código:
 
-```ruby
+```jsx
 ...
 import styles from '../../../../styles/Header.module.css';
 
@@ -61,7 +87,7 @@ import styles from '../../../../styles/Header.module.css';
 
 7. Vamos preparar nosso componente! Agora vamos usar um pouco do bootstrap e separar o conteúdo do StorefrontHeader. Vamos colocar o seguinte código:
 
-```ruby
+```jsx
 import { Row, Col } from 'react-bootstrap';
 ...
 <Row className={styles.background}>
@@ -131,7 +157,7 @@ import { faSearch, faShoppingCart, faUserCircle } from '@fortawesome/free-solid-
 
 11. Agora vamos criar nosso componente /components/shared/Logo, e dentro dele vamos criar o arquivo index.tsx com o conteúdo básico:
 
-```ruby
+```jsx
 import React from 'react';
 
 const Logo: React.FC = () => {
@@ -145,7 +171,7 @@ export default Logo;
 
 13. Agora, no nosso componente /components/shared/Logo vamos importar a imagem e o componente Link, e a imagem, do nextjs:
 
-```ruby
+```jsx
 ...
 import Link from 'next/link';
 import Image from 'next/image';
@@ -163,43 +189,54 @@ import Image from 'next/image';
 
 14. Agora no nosso componente StorefrontHeader, vamos importar nosso componente Logo, substituindo no lugar onde está escrito "Logo".
 
-```ruby
+```jsx
 import Logo from '../../Logo';
 ...
 <Logo />
 ```
 
-15. Crie a pasta pages/Storefront, e dentro crie o arquivo index.tsx com a seguinte estrutura:
+15. No componente MainComponent, coloque o seguinte código:
 
+```jsx
+import Header from '../shared/Header/StorefrontHeader';
+...
+<Header />
+
+<div className="container flex-fill">
+    {children}
+</div>
+...
 ```
+
+16. Crie a pasta pages/Storefront, e dentro crie o arquivo index.tsx com a seguinte estrutura:
+
+```jsx
 import React from 'react';
 
 const Storefront: React.FC = () => {
     return(
-        <div className="d-flex flex-column sticky-footer-wrapper">
+        <>
 
-        </div>
+        </>
     )
 }
 
 export default Storefront;
 ```
 
-16. Dentro desse arquivo, adicione o seguinte código:
+17. Dentro desse arquivo, adicione o seguinte código:
 
-```
+```jsx
 ...
-import Header from '../../components/shared/Header/StorefrontHeader';
+import MainComponent from '../../components/shared/MainComponent';
 
 ...
-<Header />
-
-<div className="container flex-fill">
-    <h2>Storefront</h2>
-</div>
+<MainComponent>
+    <h1>StoreFront</h1>
+</MainComponent>
 ```
 
-17. Acesse o localhost:3001/Storefront
+18. Acesse o localhost:3001/Storefront
 
 > Caso o background principal não consiga ser renderizado e esteja na cor branca, a causa é a ordem das importações no _app.tsx. Deixe-a com o css por último, como abaixo:
 

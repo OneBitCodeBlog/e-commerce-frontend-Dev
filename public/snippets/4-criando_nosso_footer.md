@@ -179,15 +179,15 @@ import Image from 'next/image';
             </Col>
         </Row>
     </Col>
-</StyledFooter>
+</footer>
 ...
 ```
 
-14. No pages/StoreFront, adicione o seguinte código:
+14. No components/shared/MainComponent, adicione o seguinte código:
 
-```
+```jsx
 ...
-import Footer from '../../components/shared/Footer/StorefrontFooter';
+import Footer from '../shared/Footer/StorefrontFooter';
 
 ...
 <Footer />
