@@ -7,13 +7,15 @@ const PasswordRecovery: React.FC = () => {
     return (
         <MainComponent>
             <PasswordComponent>
-                <h5>Digite o Email Cadastrado</h5>
+                <form>
+                    <h5>Digite o Email Cadastrado</h5>
 
-                <InputGroup className="mt-3">
-                    <FormControl placeholder="Meu e-mail" required />
-                </InputGroup>
+                    <InputGroup className="mt-3">
+                        <FormControl placeholder="Meu e-mail" required />
+                    </InputGroup>
 
-                <Button type="submit" className="btn btn-info mt-3 w-100">Enviar</Button>
+                    <Button type="submit" className="btn btn-info mt-3 w-100">Enviar</Button>
+                </form>
             </PasswordComponent>
         </MainComponent>
     )
