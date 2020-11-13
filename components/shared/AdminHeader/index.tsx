@@ -11,7 +11,7 @@ interface AdminHeaderProps {
 const AdminHeader: React.FC<AdminHeaderProps> = ({name}) => {
     return(
         <Row className={styles.background}>
-            <Col lg={6} xs>
+            <Col lg={6} xs={9}>
                 <FontAwesomeIcon icon={faSignal} color="var(--color-gray-light)" className="ml-3" />
                 <FontAwesomeIcon icon={faUser} color="var(--color-gray-light)" className="ml-3" />
                 <FontAwesomeIcon icon={faGamepad} color="var(--color-gray-light)" className="ml-3" />
@@ -21,7 +21,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({name}) => {
                 <FontAwesomeIcon icon={faDollarSign} color="var(--color-gray-light)" className="ml-3" />
             </Col>
 
-            <Col lg={6} xs>
+            <Col lg={6} xs={3} className="d-none d-md-block">
                 <div className="float-right">
                     <span className={styles.name}>{ name }</span>
                     <FontAwesomeIcon icon={faUserCircle} color="var(--color-gray-light)" />

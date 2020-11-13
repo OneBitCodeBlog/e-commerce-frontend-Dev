@@ -121,7 +121,7 @@ export default AdminComponent;
 ```jsx
 import { Col, Row } from 'react-bootstrap';
 ...
-<Row>
+<Row className="mr-lg-4">
     <Col lg={3}>
         Menu Lateral
     </Col>

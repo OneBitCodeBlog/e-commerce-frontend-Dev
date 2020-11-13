@@ -1,0 +1,20 @@
+.styledPath {
+    color: var(--color-gray-light);
+    font-size: 13px;
+    float: left;
+}
+
+.input {
+    background-color: var(--color-secondary);
+    border: none;
+    height: 30px;
+}
+
+.input:focus {
+    background-color: var(--color-secondary);
+}
+
+.titleButton {
+    border: 2px solid rgba(10,150,250,0.9);
+    padding: 5px;
+}

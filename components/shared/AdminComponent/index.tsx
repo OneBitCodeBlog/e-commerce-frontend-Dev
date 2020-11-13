@@ -6,7 +6,7 @@ import LateralMenu from '../LateralMenu';
 
 const AdminComponent: React.FC = ({children}) => {
     return(
-        <Row>
+        <Row className="mr-lg-4">
             <Col lg={3}>
                 <LateralMenu />
             </Col>
