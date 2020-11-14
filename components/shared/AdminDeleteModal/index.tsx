@@ -6,14 +6,15 @@ import StyledButton from '../StyledButton';
 
 interface AdminDeleteModalProps {
     show: boolean,
-    handleClose: () => void
+    handleClose: () => void,
+    target: String
 }
 
-const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) => {
+const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose, target}) => {
     return (
         <Modal show={show} onHide={handleClose} className={styles.modal} animation={true}>
             <Modal.Body className={styles.modal_body}>
-                Tem certeza que deseja excluir este usuário?
+                Tem certeza que deseja excluir este {target}?
             
                 <Row>
                     <Col lg={6} xs>

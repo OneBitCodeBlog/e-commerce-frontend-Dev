@@ -477,7 +477,7 @@ import styles from '../../../styles/AdminPanel.module.css';
 
 <Modal show={show} onHide={handleClose} className={styles.modal} animation={true}>
     <Modal.Body className={styles.modal_body}>
-        Tem certeza que deseja excluir este usuário?
+        Tem certeza que deseja excluir este {target}?
 
 
     </Modal.Body>
@@ -585,13 +585,13 @@ import StyledButton from '../StyledButton';
 
 ```jsx
 ...
-const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) => {
-
-...
 interface AdminDeleteModalProps {
     show: boolean,
-    handleClose: () => void
+    handleClose: () => void,
+    target: String
 }
+...
+const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) => {
 ...
 ```
 
@@ -624,7 +624,7 @@ const handleShow = () => setShow(true);
 
 ```jsx
 ...
-<AdminDeleteModal handleClose={handleClose} show={show}  />
+<AdminDeleteModal handleClose={handleClose} show={show} target="Usuário"  />
 ...
 ```
 
