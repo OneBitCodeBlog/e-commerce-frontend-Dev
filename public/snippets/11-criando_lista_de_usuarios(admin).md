@@ -48,92 +48,42 @@ const TitleAdminPanel: React.FC = () => {
 export default TitleAdminPanel;
 ```
 
-4. Agora vamos importar o bootstrap em nosso componente:
+4. Agora vamos separar nosso componente em duas partes, o nome da página junto com o caminho da mesma, e a segunda parte que é o campo de pesquisa e um botão.
+
+5. Vamos começar a criar a primeira parte. Crie o componente components/TitleAdminPanel/TitleAndPath com o arquivo index.tsx com o seguinte conteúdo:
 
 ```jsx
-import { Row, Col } from 'react-bootstrap';
-...
-<Row className="mt-4">
-    <Col lg={6} xs={4}>
-        título da página
-    </Col>
+import React from 'react';
 
-    <Col lg={{span: 4, offset: 2}} xs={8}>
-        Campo de pesquisa e ícones
-    </Col>
-</Row>
+const TitleAndPath: React.FC = () => {
+    return (
+        <>
 
-...
+        </>
+    )
+}
+
+export default TitleAndPath;
 ```
 
-5. Crie o arquivo styles/AdminTitle.module.css e coloque o seguinte código:
+6. Crie o arquivo styles/AdminTitle.module.css, e adicione o seguinte código:
 
 ```css
+.title_and_path {
+    text-align: left;
+}
+
+.title_and_path h4, .title_and_path span {
+    display: inline;
+}
+
 .styledPath {
     color: var(--color-gray-light);
-    font-size: 13px;
-    float: left;
+    font-size: 11px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
-```
 
-5. Agora, na primeira parte do componente, adicione o seguinte:
-
-```jsx
-import styles from '../../../styles/AdminTitle.module.css';
-...
-<Col lg={6} xs={4}>
-    ...
-    <Row>
-        <Col lg={3} xs={6}>
-            <h3>Título</h3>
-        </Col>
-
-        <Col lg={9} xs={6} className="mt-2 d-none d-md-block">
-            <span className={styles.styledPath}>Dashboard > Usuários</span>
-        </Col>
-    </Row>
-    ...
-</Col>
-...
-```
-
-6. E na segunda parte do componente, adicione:
-
-```jsx
-import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-...
-
-<Col lg={{span: 4, offset: 2}} xs={8}>
-    ...
-    <Row>
-        <Col lg={9} xs>
-            <Row>
-                <Col lg={9} xs={10}>
-                    <InputGroup>
-                        <FormControl placeholder="Pesquisar usuário" className={styles.input} />
-                    </InputGroup>
-                </Col>
-
-                <Col lg={3} xs={2} className="mt-1">
-                    <FontAwesomeIcon icon={faSearch} size="lg" color="var(--color-gray-light)" className="float-left" />
-                </Col>
-            </Row>
-        </Col>
-
-        <Col lg={2} xs={{span: 3}} className={styles.titleButton}>
-            Botão ícone
-        </Col>
-    </Row>
-    ...
-</Col>
-```
-
-7. Agora vamos estilizar nosso Input e nosso Button. Vá no arquivo styles/AdminTitle.module.css e adicione:
-
-```css
-...
 .input {
     background-color: var(--color-secondary);
     border: none;
@@ -147,45 +97,198 @@ import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 .titleButton {
     margin-top: -5px;
 }
+
+@media (max-width: 1200px) {
+  .styledPath {
+    display: none!important;
+   }
+}
 ```
 
-8. Agora adicione a estrutura em typescript, e vamos preparar esse componente para renderizar os parâmetros que mandarmos para ele:
+6. Agora vamos adicionar a tipagem do nosso componente e o conteúdo que virá do componente pai:
 
-> Esse componente será preparado para ser reutilizado. Sendo assim, o prepararemos para renderizar os parâmetros que desejarmos pra cada página.
+>Nosso componente receberá o título da página e o caminho. Pra isso, vamos colocar o seguinte
 
 ```jsx
 ...
-interface TitleAdminPanelProps {
+import styles from '../../../../styles/AdminTitle.module.css';
+
+interface TitleAndPath {
     title: String,
     path: String
 }
+
+const TitleAndPath: React.FC<TitleAndPath> = ({title, path}) => {
+    return (
+        <>
+            <h4>{ title }</h4>
+            <span className={styles.styledPath}>{ path }</span>
+        </>
+    )
+}
 ...
-const TitleAdminPanel: React.FC<TitleAdminPanelProps> = ({ title, path }) => {
 ```
 
-9. E substitua o seguinte conteúdo:
+7. Crie também o componente /components/TitleAdminPanel/SearchAndIcon, e crie o arquivo index.tsx com o seguinte conteúdo:
+
+```jsx
+import React from 'react';
+
+const SearchAndIcon: React.FC = () => {
+    return (
+        <>
+            
+        </>
+    )
+}
+
+export default SearchAndIcon;
+```
+
+8. Agora vamos separar nosso componente com o bootstrap:
+
+```jsx
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+
+...
+    return (
+        <Row>
+            <Col lg={9} xs>
+            </Col>
+
+            <Col lg={2} xs={{span: 3}}>
+            </Col>
+        </Row>
+    )
+...
+```
+
+9. Vamos adicionar nosso campo de pesquisa junto ao botão de pesquisa:
+
+```jsx
+import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import styles from '../../../../styles/AdminTitle.module.css';
+...
+<Col lg={9} xs>
+    <Row>
+        <Col lg={9} xs={10}>
+            <InputGroup>
+                <FormControl placeholder="Pesquisar usuário" className={styles.input} />
+            </InputGroup>
+        </Col>
+
+        <Col lg={3} xs={2} className="mt-1">
+            <FontAwesomeIcon icon={faSearch} size="lg" color="var(--color-gray-light)" className="float-left" />
+        </Col>
+    </Row>
+</Col>
+...
+```
+
+10. Agora vamos importar nosso botão para adicionar os usuários:
 
 ```jsx
 ...
-<Col lg={3} xs={6}>
-    <h3>{ title }</h3>
-</Col>
+import StyledButton from '../../StyledButton';
 ...
-<Col lg={9} xs={6} className="mt-2 d-none d-md-block">
-    <span className={styles.styledPath}>{ path }</span>
+<Col lg={2} xs={{span: 3}} className={styles.titleButton}>
+    <StyledButton icon={icon} type_button="blue" />
 </Col>
+```
+
+11. Vamos adicionar tipagem ao nosso componente:
+
+```jsx
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+...
+interface SearchAndIcon {
+    icon: IconProp
+}
+
+const SearchAndIcon: React.FC<SearchAndIcon> = ({icon}) => {
 ...
 ```
 
-10. Agora na página pages/Admin/Users/List e adicione o seguinte código:
+12. Agora vamos ao nosso componente components/TitleAdminPanel e crie o arquivo index.tsx com o seguinte conteúdo:
+
+```jsx
+import React from 'react';
+
+const TitleAdminPanel: React.FC = () => {
+    return (
+        <>
+
+        </>
+    )
+}
+
+export default TitleAdminPanel;
+```
+
+13. Vamos adicionar nossos componentes criados e o que precisaremos do bootstrap:
 
 ```jsx
 ...
-    <TitleAdminPanel title="Usuários" path="Dashboard > Usuários" />
+import { Row, Col } from 'react-bootstrap';
+import TitleAndPath from './TitleAndPath';
+import SearchAndIcon from './SearchAndIcon';
+import styles from '../../../styles/AdminTitle.module.css';
 ...
 ```
 
-11. Agora crie o componente AdminListTable, com o arquivo index.tsx dentro, e coloque o seguinte código:
+14. Agora vamos adicionar nossa estrutura.
+
+>Caso seja enviado algum ícone, nosso componente renderizará a aba de pesquisa. Caso não, será renderizado somente o título da página com o caminho.
+
+```jsx
+...
+<Row className="mt-4">
+    {
+        (icon) ?
+            <>
+                <Col lg={6} xs={4} className={styles.title_and_path}>
+                    <TitleAndPath title={title} path={path} />
+                </Col>
+
+                <Col lg={{span: 4, offset: 2}} xs={8}>
+                    <SearchAndIcon icon={icon} />
+                </Col>
+            </>
+        :
+            <TitleAndPath title={title} path={path} />
+    }
+</Row>
+...
+```
+
+15. E vamos realizar a tipagem do nosso componente:
+
+```jsx
+...
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
+interface TitleAdminPanelProps {
+    title: String,
+    path: String,
+    icon?: IconProp
+}
+
+const TitleAdminPanel: React.FC<TitleAdminPanelProps> = ({ title, path, icon }) => {
+...
+```
+
+16. Agora na página pages/Admin/Users/List e adicione o seguinte código:
+
+```jsx
+import { faEdit, faTrash, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+...
+<TitleAdminPanel title="Usuários" path="Dashboard > Usuários" icon={faUserPlus} />
+...
+```
+
+17. Agora crie o componente AdminListTable, com o arquivo index.tsx dentro, e coloque o seguinte código:
 
 ```jsx
 import React from 'react';
@@ -201,7 +304,7 @@ const AdminListTable: React.FC = () => {
 export default AdminListTable;
 ```
 
-12. Primeiro, vamos criar nosso css em styles/AdminPanel.module.css e coloque o seguinte conteúdo:
+18. Primeiro, vamos criar nosso css em styles/AdminPanel.module.css e coloque o seguinte conteúdo:
 
 ```css
 .admin_panel {
@@ -216,7 +319,7 @@ export default AdminListTable;
 }
 ```
 
-13. No componente AdminListTable adicione o seguinte conteúdo:
+19. No componente AdminListTable adicione o seguinte conteúdo:
 
 ```jsx
 ...
@@ -231,7 +334,7 @@ import { Table } from 'react-bootstrap';
 ...
 ```
 
-14. Adicione o seguinte conteúdo, tipando as props do nosso componente para o reaproveitamento:
+120. Adicione o seguinte conteúdo, tipando as props do nosso componente para o reaproveitamento:
 
 > A ideia é reaproveitar a maior parte da tabela em outros componentes de List.
 
@@ -264,7 +367,7 @@ const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, s
 ...
 ```
 
-15. Adicione também o seguinte código para realizar a paginação:
+21. Adicione também o seguinte código para realizar a paginação:
 
 ```jsx
 ...
@@ -279,7 +382,7 @@ const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, s
 ...
 ```
 
-16. Na página pages/Admin/Users/List, adicione o seguinte conteúdo:
+22. Na página pages/Admin/Users/List, adicione o seguinte conteúdo:
 
 ```jsx
 ...
@@ -336,7 +439,7 @@ import styles from '../../../../styles/AdminPanel.module.css';
 ...
 ```
 
-17. No css AdminPanel.module.css, adicione o seguinte código: 
+23. No css AdminPanel.module.css, adicione o seguinte código: 
 
 ```css
 .table_line {
@@ -349,7 +452,7 @@ import styles from '../../../../styles/AdminPanel.module.css';
 }
 ```
 
-18. Agora vamos criar nosso modal para o botão de delete. Crie o componente AdminDeleteModal, e crie o index.tsx com o seguinte conteúdo:
+24. Agora vamos criar nosso modal para o botão de delete. Crie o componente AdminDeleteModal, e crie o index.tsx com o seguinte conteúdo:
 
 ```jsx
 import React from 'react';
@@ -365,7 +468,7 @@ const AdminDeleteModal: React.FC = () => {
 export default AdminDeleteModal;
 ```
 
-19. Vamos adicionar o conteúdo do nosso modal:
+25. Vamos adicionar o conteúdo do nosso modal:
 
 ```jsx
 import { Modal, Button } from 'react-bootstrap';
@@ -382,9 +485,9 @@ import styles from '../../../styles/AdminPanel.module.css';
 ...
 ```
 
-20. Agora vamos criar nosso componente para renderizar nossos botões.
+26. Agora vamos criar nosso componente para renderizar nossos botões.
 
-21. Crie o componente StyledButton, e crie o arquivo index.tsx dentro com o seguinte conteúdo:
+27. Crie o componente StyledButton, e crie o arquivo index.tsx dentro com o seguinte conteúdo:
 
 ```jsx
 import React from 'react';
@@ -400,7 +503,7 @@ const StyledButton: React.FC = () => {
 export default StyledButton;
 ```
 
-22. Crie o arquivo styles/StyledButton.module.css com o seguinte conteúdo:
+28. Crie o arquivo styles/StyledButton.module.css com o seguinte conteúdo:
 
 ```css
 .red_button {
@@ -423,7 +526,7 @@ export default StyledButton;
 }
 ```
 
-23. Agora vamos importar nossa estrutura do botão:
+29. Agora vamos importar nossa estrutura do botão:
 
 ```jsx
 import { Button } from 'react-bootstrap';
@@ -437,7 +540,7 @@ import styles from '../../../styles/StyledButton.module.css';
 </Button>
 ```
 
-24. Colocando nossa estrutura typescript:
+30. Colocando nossa estrutura typescript:
 
 ```jsx
 ...
@@ -451,7 +554,7 @@ interface ButtonProps {
 const StyledButton: React.FC<ButtonProps> = ({icon, action, type_button}) => {
 ```
 
-25. Na página AdminDeleteModal, em baixo da frase e dentro do Modal.Body, vamos adicionar nossos botões. Adicione o seguinte conteúdo:
+31. Na página AdminDeleteModal, em baixo da frase e dentro do Modal.Body, vamos adicionar nossos botões. Adicione o seguinte conteúdo:
 
 > As funções da handleClose vão ser renderizadas em nossa page. Por enquanto, a função não vai funcionar.
 
@@ -478,7 +581,7 @@ import StyledButton from '../StyledButton';
 ...
 ```
 
-26. Agora adicione a seguinte estrutura do typescript:
+32. Agora adicione a seguinte estrutura do typescript:
 
 ```jsx
 ...
@@ -492,7 +595,7 @@ interface AdminDeleteModalProps {
 ...
 ```
 
-27. No AdminPanel.module.css adicione o seguinte código:
+33. No AdminPanel.module.css adicione o seguinte código:
 
 ```css
 .modal {
@@ -507,7 +610,7 @@ interface AdminDeleteModalProps {
 }
 ```
 
-28. Na página pages/Admin/Users/List adicione o seguinte conteúdo:
+34. Na página pages/Admin/Users/List adicione o seguinte conteúdo:
 
 ```jsx
 import AdminDeleteModal from '../../../../components/shared/AdminDeleteModal';
@@ -517,7 +620,7 @@ const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
 ```
 
-29. Abaixo do TitleAdminPanel e acima do AdminListTable adicione o seguinte código:
+35. Abaixo do TitleAdminPanel e acima do AdminListTable adicione o seguinte código:
 
 ```jsx
 ...
@@ -525,7 +628,7 @@ const handleShow = () => setShow(true);
 ...
 ```
 
-30. No componente TitleAdminPanel, substitua o "Botão ícone" pelo código:
+36. No componente TitleAdminPanel, substitua o "Botão ícone" pelo código:
 
 ```jsx
 import StyledButton from '../StyledButton';
@@ -535,12 +638,11 @@ import StyledButton from '../StyledButton';
 ...
 ```
 
-31. Em nosso componente AdminListTable, modifique a palavra "Paginação", e adicione o seguinte código:
+37. Em nosso componente AdminListTable, modifique a palavra "Paginação", e adicione o seguinte código:
 
 ```jsx
 import StyledButton from '../StyledButton';
 ...
-
 
 <StyledButton action="<" type_button="blue" />
 <StyledButton action="1" type_button="blue" />

@@ -28,3 +28,11 @@
     text-align: center;
     font-size: 29px;
 }
+
+.details_button {
+    text-align: right;
+}
+
+.details_button > button {
+    margin: 10px;
+}
