@@ -5,22 +5,31 @@ import TitleAdminPanel from '../../../../components/shared/TitleAdminPanel';
 import StyledButton from '../../../../components/shared/StyledButton';
 import styles from '../../../../styles/AdminPanel.module.css';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 
 const Details: React.FC = () => {
     return (
         <AdminComponent>
-            <TitleAdminPanel title="Detalhes do Usuário" path="Dashboard > Usuários > Detalhes do usuário" />
+            <TitleAdminPanel title="Detalhes do Produto" path="Dashboard > Produtos > Detalhes do produto" />
 
             <div className={styles.admin_panel}>
                 <Row style={{'textAlign': 'left'}}>
-                    <Col lg={6}>
-                        <h6 className="m-4">Nome: Leonardo Scorza</h6>
-                        <h6 className="m-4">E-mail: contato@onebitcode.com</h6>
+                    <Col lg={4}>
+                        <Image src="/assets/logo-bootcamp.png" alt="Logo Bootcamp" width={240} height={70} />
                     </Col>
 
-                    <Col lg={6}>
-                        <h6 className="m-4">ID: #00001</h6>
-                        <h6 className="m-4">Status: Administrador</h6>
+                    <Col lg={8}>
+                        <Row>
+                            <Col lg={6}>
+                                <h6 className="m-4">Nome: Far Cry 4</h6>
+                                <h6 className="m-4">Categorias: História, Aventura, Mundo Aberto, Ação, Estratégia.</h6>
+                            </Col>
+
+                            <Col lg={6}>
+                                <h6 className="m-4">Código: #00001</h6>
+                                <h6 className="m-4">Status: Disponível</h6>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
 

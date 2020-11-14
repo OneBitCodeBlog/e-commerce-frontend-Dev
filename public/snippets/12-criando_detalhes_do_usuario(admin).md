@@ -51,13 +51,13 @@ import styles from '../../../../styles/AdminPanel.module.css';
 <div className={styles.admin_panel}>
     <Row style={{'textAlign': 'left'}}>
         <Col lg={6}>
-            <h5 className="m-4">Nome: Leonardo Scorza</h5>
-            <h5 className="m-4">E-mail: contato@onebitcode.com</h5>
+            <h6 className="m-4">Nome: Leonardo Scorza</h6>
+            <h6 className="m-4">E-mail: contato@onebitcode.com</h6>
         </Col>
 
         <Col lg={6}>
-            <h5 className="m-4">ID: #00001</h5>
-            <h5 className="m-4">Status: Administrador</h5>
+            <h6 className="m-4">ID: #00001</h6>
+            <h6 className="m-4">Status: Administrador</h6>
         </Col>
     </Row>
 
