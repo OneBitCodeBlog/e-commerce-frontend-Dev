@@ -3,6 +3,7 @@ import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/AdminTitle.module.css';
+import StyledButton from '../StyledButton';
 
 interface TitleAdminPanelProps {
     title: String,
@@ -40,8 +41,8 @@ const TitleAdminPanel: React.FC<TitleAdminPanelProps> = ({ title, path }) => {
                         </Row>
                     </Col>
 
-                    <Col lg={2} xs={{span: 2, offset: 1}} className={styles.titleButton}>
-                        <FontAwesomeIcon icon={faUserPlus} size="lg" />
+                    <Col lg={2} xs={{span: 3}} className={styles.titleButton}>
+                        <StyledButton icon={faUserPlus} type_button="blue" />
                     </Col>
                 </Row>
             </Col>

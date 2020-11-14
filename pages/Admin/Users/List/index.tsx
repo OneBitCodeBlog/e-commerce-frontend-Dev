@@ -24,8 +24,8 @@ const List: React.FC = () => {
                     <td>contato@onebitcode.com</td>
                     <td>#000001</td>
                     <td>Administrador</td>
-                    <td><FontAwesomeIcon icon={faEdit} /></td>
-                    <td><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
                 </tr>
 
                 <br />
@@ -35,8 +35,8 @@ const List: React.FC = () => {
                     <td>contato@onebitcode.com</td>
                     <td>#000001</td>
                     <td>Administrador</td>
-                    <td><FontAwesomeIcon icon={faEdit} /></td>
-                    <td><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
                 </tr>
 
                 <br />
@@ -46,8 +46,8 @@ const List: React.FC = () => {
                     <td>contato@onebitcode.com</td>
                     <td>#000001</td>
                     <td>Administrador</td>
-                    <td><FontAwesomeIcon icon={faEdit} /></td>
-                    <td><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
                 </tr>
 
                 <br />
@@ -57,8 +57,8 @@ const List: React.FC = () => {
                     <td>contato@onebitcode.com</td>
                     <td>#000001</td>
                     <td>Administrador</td>
-                    <td><FontAwesomeIcon icon={faEdit} /></td>
-                    <td><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+                    <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
                 </tr>
             </AdminListTable>
         </AdminComponent>

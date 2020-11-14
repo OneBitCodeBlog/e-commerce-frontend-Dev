@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Button, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Modal, Row, Col } from 'react-bootstrap';
 import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/AdminPanel.module.css';
+import StyledButton from '../StyledButton';
 
 interface AdminDeleteModalProps {
     show: boolean,
@@ -17,15 +17,15 @@ const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) 
             
                 <Row>
                     <Col lg={6} xs>
-                        <Button className={styles.red_button} onClick={handleClose}>
-                            <FontAwesomeIcon icon={faTrash} className="mr-2" /> Excluir
-                        </Button>
+                        <div onClick={handleClose}>
+                            <StyledButton icon={faTrash} action={"Excluir"} type_button="red" />
+                        </div>
                     </Col>
 
                     <Col lg={6} xs>
-                        <Button className={styles.blue_button} onClick={handleClose}>
-                            <FontAwesomeIcon icon={faTimes} className="mr-2" /> Cancelar
-                        </Button>
+                        <div onClick={handleClose}>
+                            <StyledButton icon={faTimes} action={"Cancelar"} type_button="blue" />
+                        </div>
                     </Col>
                 </Row>
             </Modal.Body>

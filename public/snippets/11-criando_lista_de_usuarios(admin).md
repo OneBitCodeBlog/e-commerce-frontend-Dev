@@ -122,8 +122,8 @@ import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
             </Row>
         </Col>
 
-        <Col lg={2} xs={{span: 2, offset: 1}} className={styles.titleButton}>
-            <FontAwesomeIcon icon={faUserPlus} size="lg" />
+        <Col lg={2} xs={{span: 3}} className={styles.titleButton}>
+            Botão ícone
         </Col>
     </Row>
     ...
@@ -145,8 +145,7 @@ import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 }
 
 .titleButton {
-    border: 2px solid rgba(10,150,250,0.9);
-    padding: 5px;
+    margin-top: -5px;
 }
 ```
 
@@ -272,9 +271,9 @@ const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, s
 </Table>
 
 ...
-<div className="float-right">
+<div className="pagination justify-content-end">
     <div className="pagination">
-        Paginação
+        paginação
     </div>
 </div>
 ...
@@ -297,8 +296,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
         <td>contato@onebitcode.com</td>
         <td>#000001</td>
         <td>Administrador</td>
-        <td><FontAwesomeIcon icon={faEdit} /></td>
-        <td><FontAwesomeIcon icon={faTrash} /></td>
+        <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+        <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
     </tr>
 
     <br />
@@ -308,8 +307,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
         <td>contato@onebitcode.com</td>
         <td>#000001</td>
         <td>Administrador</td>
-        <td><FontAwesomeIcon icon={faEdit} /></td>
-        <td><FontAwesomeIcon icon={faTrash} /></td>
+        <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+        <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
     </tr>
 
     <br />
@@ -319,8 +318,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
         <td>contato@onebitcode.com</td>
         <td>#000001</td>
         <td>Administrador</td>
-        <td><FontAwesomeIcon icon={faEdit} /></td>
-        <td><FontAwesomeIcon icon={faTrash} /></td>
+        <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+        <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
     </tr>
 
     <br />
@@ -330,8 +329,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
         <td>contato@onebitcode.com</td>
         <td>#000001</td>
         <td>Administrador</td>
-        <td><FontAwesomeIcon icon={faEdit} /></td>
-        <td><FontAwesomeIcon icon={faTrash} /></td>
+        <td><a href="#"><FontAwesomeIcon icon={faEdit} /></a></td>
+        <td><a href="#"><FontAwesomeIcon icon={faTrash} onClick={handleShow} /></a></td>
     </tr>
 </AdminListTable>
 ...
@@ -383,61 +382,27 @@ import styles from '../../../styles/AdminPanel.module.css';
 ...
 ```
 
-20. Em baixo da frase, dentro do Modal.Body, vamos adicionar nossos botões. Adicione o seguinte conteúdo:
+20. Agora vamos criar nosso componente para renderizar nossos botões.
 
-> As funções da handleClose vão ser renderizadas em nossa page. Por enquanto, a função não vai funcionar.
-
-```jsx
-...
-import { Modal, Button, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-...
-<Row>
-    <Col lg={6} xs>
-        <Button className={styles.red_button} onClick={handleClose}>
-            <FontAwesomeIcon icon={faTrash} className="mr-2" /> Excluir
-        </Button>
-    </Col>
-
-    <Col lg={6} xs>
-        <Button className={styles.blue_button} onClick={handleClose}>
-            <FontAwesomeIcon icon={faTimes} className="mr-2" /> Cancelar
-        </Button>
-    </Col>
-</Row>
-...
-```
-
-21. Agora adicione a seguinte estrutura do typescript:
+21. Crie o componente StyledButton, e crie o arquivo index.tsx dentro com o seguinte conteúdo:
 
 ```jsx
-...
-const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) => {
+import React from 'react';
 
-...
-interface AdminDeleteModalProps {
-    show: boolean,
-    handleClose: () => void
+const StyledButton: React.FC = () => {
+    return (
+        <>
+
+        </>
+    )
 }
-...
+
+export default StyledButton;
 ```
 
-22. No AdminPanel.module.css adicione o seguinte código:
+22. Crie o arquivo styles/StyledButton.module.css com o seguinte conteúdo:
 
 ```css
-.modal {
-    top: 20%;
-}
-
-.modal_body {
-    background-color: var(--color-primary);
-    padding: 50px;
-    text-align: center;
-    font-size: 29px;
-}
-
 .red_button {
     background: none;
     border: 2px solid rgb(200,10,10);
@@ -458,7 +423,91 @@ interface AdminDeleteModalProps {
 }
 ```
 
-23. Na página pages/Admin/Users/List adicione o seguinte conteúdo:
+23. Agora vamos importar nossa estrutura do botão:
+
+```jsx
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import styles from '../../../styles/StyledButton.module.css';
+
+...
+<Button className={(type_button == "red") ? styles.red_button : styles.blue_button}>
+    { icon && <FontAwesomeIcon icon={icon} className={action && "mr-2"} /> } {action}
+</Button>
+```
+
+24. Colocando nossa estrutura typescript:
+
+```jsx
+...
+interface ButtonProps {
+    icon: IconProp,
+    action?: String,
+    type_button: string
+}
+
+...
+const StyledButton: React.FC<ButtonProps> = ({icon, action, type_button}) => {
+```
+
+25. Na página AdminDeleteModal, em baixo da frase e dentro do Modal.Body, vamos adicionar nossos botões. Adicione o seguinte conteúdo:
+
+> As funções da handleClose vão ser renderizadas em nossa page. Por enquanto, a função não vai funcionar.
+
+```jsx
+...
+import { Modal, Row, Col } from 'react-bootstrap';
+import { faTrash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import StyledButton from '../StyledButton';
+
+...
+<Row>
+    <Col lg={6} xs>
+        <div onClick={handleClose}>
+            <StyledButton icon={faTrash} action={"Excluir"} type_button="red" />
+        </div>
+    </Col>
+
+    <Col lg={6} xs>
+        <div onClick={handleClose}>
+            <StyledButton icon={faTimes} action={"Cancelar"} type_button="blue" />
+        </div>
+    </Col>
+</Row>
+...
+```
+
+26. Agora adicione a seguinte estrutura do typescript:
+
+```jsx
+...
+const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose}) => {
+
+...
+interface AdminDeleteModalProps {
+    show: boolean,
+    handleClose: () => void
+}
+...
+```
+
+27. No AdminPanel.module.css adicione o seguinte código:
+
+```css
+.modal {
+    top: 20%;
+}
+
+.modal_body {
+    background-color: var(--color-primary);
+    padding: 50px;
+    text-align: center;
+    font-size: 29px;
+}
+```
+
+28. Na página pages/Admin/Users/List adicione o seguinte conteúdo:
 
 ```jsx
 import AdminDeleteModal from '../../../../components/shared/AdminDeleteModal';
@@ -468,10 +517,36 @@ const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
 ```
 
-24. Abaixo do TitleAdminPanel e acima do AdminListTable adicione o seguinte código:
+29. Abaixo do TitleAdminPanel e acima do AdminListTable adicione o seguinte código:
 
 ```jsx
 ...
 <AdminDeleteModal handleClose={handleClose} show={show}  />
 ...
+```
+
+30. No componente TitleAdminPanel, substitua o "Botão ícone" pelo código:
+
+```jsx
+import StyledButton from '../StyledButton';
+...
+
+<StyledButton icon={faUserPlus} type_button="blue" />
+...
+```
+
+31. Em nosso componente AdminListTable, modifique a palavra "Paginação", e adicione o seguinte código:
+
+```jsx
+import StyledButton from '../StyledButton';
+...
+
+
+<StyledButton action="<" type_button="blue" />
+<StyledButton action="1" type_button="blue" />
+<StyledButton action="2" type_button="blue" />
+<StyledButton action="3" type_button="blue" />
+...
+<StyledButton action="31" type_button="blue" />
+<StyledButton action=">" type_button="blue" />
 ```
