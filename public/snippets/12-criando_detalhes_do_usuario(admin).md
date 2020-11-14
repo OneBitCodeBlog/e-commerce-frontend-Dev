@@ -9,7 +9,7 @@ Nessa aula, vamos criar a página de detalhes do usuário.
 ```jsx
 import React from 'react';
 
-const Details = () => {
+const Details: React.FC = () => {
     return (
         <>
 

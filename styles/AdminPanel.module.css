@@ -36,3 +36,14 @@
 .details_button > button {
     margin: 10px;
 }
+
+.new_form {
+    text-align: left;
+    padding: 20px;
+}
+
+.secundary_input, .secundary_input:focus {
+    background-color: var(--color-background);
+    color: white;
+    border: none;
+}

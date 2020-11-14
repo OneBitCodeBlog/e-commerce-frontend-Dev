@@ -6,7 +6,7 @@ import StyledButton from '../../../../components/shared/StyledButton';
 import styles from '../../../../styles/AdminPanel.module.css';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-const Details = () => {
+const Details: React.FC = () => {
     return (
         <AdminComponent>
             <TitleAdminPanel title="Detalhes do Usuário" path="Dashboard > Usuários > Detalhes do usuário" />
