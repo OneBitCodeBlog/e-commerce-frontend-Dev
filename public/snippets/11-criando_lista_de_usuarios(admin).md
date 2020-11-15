@@ -346,10 +346,10 @@ interface AdminListTableProps {
     third_title?: String,
     fourth_title?: String,
     fifth_title?: String,
-    sexth_title?: String
+    sixth_title?: String
 }
 ...
-const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, second_title, third_title, fourth_title, fifth_title, sexth_title}) => {
+const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, second_title, third_title, fourth_title, fifth_title, sixth_title}) => {
 ...
 <Table borderless={true} hover={true} responsive={true}>
     <thead>
@@ -359,7 +359,7 @@ const AdminListTable: React.FC<AdminListTableProps> = ({children, first_title, s
             { third_title && <th>{third_title}</th>}
             { fourth_title && <th>{fourth_title}</th>}
             { fifth_title && <th>{fifth_title}</th>}
-            { sexth_title && <th>{sexth_title}</th>}
+            { sixth_title && <th>{sixth_title}</th>}
             <th colSpan={2}>Ações</th>
         </tr>
     </thead>
