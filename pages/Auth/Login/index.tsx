@@ -1,4 +1,3 @@
-import React from 'react';
 import LoginForm from '../../../components/LoginForm';
 import MainComponent from '../../../components/shared/MainComponent';
 import SignUpForm from '../../../components/SignUpForm';
@@ -10,10 +9,14 @@ const Login: React.FC = () => {
                 <h2>Entrar</h2>
                 
                 <LoginForm titlePhrase="Acessar minha conta" buttonPhrase="ACESSAR" />
-
+{/* 
                 <br />
 
                 <SignUpForm titlePhrase="Criar nova conta" buttonPhrase="CRIAR" />
+
+                <p>{user.id}</p>
+                <p>{user.name}</p>
+                <p>{user.email}</p> */}
             </div>
         </MainComponent>
     )
