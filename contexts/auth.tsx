@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react'
-import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 import api from '../services/api';
 
@@ -15,7 +15,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextInterface {
-  user: IUser;
+  loggedUser: IUser;
   signIn(credentials: SignInCredentials): Promise<void>,
 }
 
@@ -24,21 +24,31 @@ const AuthContext = createContext<AuthContextInterface>(
 );
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState();
+  const [loggedUser, setLoggedUser] = useState<IUser>();
+  const router = useRouter();
 
   const signIn = async({email, password}: SignInCredentials) => {
-    const response = await api.post('auth/v1/user/sign_in', {
-      email,
-      password
-    })
+    try {
+      const response = await api.post('auth/v1/user/sign_in', {
+        email,
+        password
+      })
 
-    console.log(response)
+      setLoggedUser({
+        id: response.data.id,
+        name: response.data.name,
+        email: response.data.email
+      })
+      router.push('/')
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   return (
     <AuthContext.Provider
       value={{
-        user: { id: 1, name: 'test', email: 'test@test.com' },
+        loggedUser,
         signIn
       }}>
       {children}

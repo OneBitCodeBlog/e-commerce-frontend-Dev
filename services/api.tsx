@@ -5,8 +5,6 @@ const api = axios.create({
 });
 
 api.interceptors.response.use(res => {
-  console.log(res.headers['access-token'])
-
   if(res.headers['access-token']) {
     api.defaults.headers = {
       'access-token': res.headers['access-token'],
@@ -16,7 +14,7 @@ api.interceptors.response.use(res => {
       uid: res.headers.uid
     }
   }
-  console.log('access-token:', res.headers['access-token'])
+
   return res;
 })
 
