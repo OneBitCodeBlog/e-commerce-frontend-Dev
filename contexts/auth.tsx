@@ -7,6 +7,7 @@ interface IUser {
   id: number;
   name: string;
   email: string;
+  profile: string;
 }
 
 interface SignInCredentials {
@@ -37,8 +38,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       setLoggedUser({
         id: response.data.id,
         name: response.data.name,
-        email: response.data.email
-      })
+        email: response.data.email,
+        profile: response.data.profile
+      });
+
       router.push('/')
     } catch(err) {
       console.log(err)
