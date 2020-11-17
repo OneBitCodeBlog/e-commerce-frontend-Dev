@@ -33,6 +33,7 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
                             <FormControl 
                                 placeholder="Senha" 
                                 value={password}
+                                type="password"
                                 onChange={(evt) => setPassword(evt.target.value)}/>
                         </InputGroup>
 
