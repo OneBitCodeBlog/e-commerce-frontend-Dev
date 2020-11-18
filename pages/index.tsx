@@ -1,5 +1,6 @@
 import React from 'react';
 import AdminComponent from '../components/shared/AdminComponent';
+import withAuth from '../components/withAuth';
 
 const Home: React.FC = () => {
     return (
@@ -9,4 +10,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home;
+export default withAuth(Home);
