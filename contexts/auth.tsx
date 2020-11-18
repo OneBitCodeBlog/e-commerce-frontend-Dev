@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Cookie from 'js-cookie';
 
 import api from '../services/api';
-import { setUncaughtExceptionCaptureCallback } from 'process';
 
 interface IUser {
   id: number;
