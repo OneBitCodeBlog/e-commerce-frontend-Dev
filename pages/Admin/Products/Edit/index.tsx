@@ -7,6 +7,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
 import StyledButton from '../../../../components/shared/StyledButton';
 import Image from 'next/image';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const Edit: React.FC = () => {
     return (
         <AdminComponent>
@@ -69,4 +71,4 @@ const Edit: React.FC = () => {
     )
 }
 
-export default Edit;
+export default withAuthAdmin(Edit);

@@ -6,6 +6,8 @@ import { faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../../styles/AdminPanel.module.css';
 import StyledButton from '../../../../components/shared/StyledButton';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const Edit: React.FC = () => {
     return (
         <AdminComponent>
@@ -59,4 +61,4 @@ const Edit: React.FC = () => {
     )
 }
 
-export default Edit;
+export default withAuthAdmin(Edit);

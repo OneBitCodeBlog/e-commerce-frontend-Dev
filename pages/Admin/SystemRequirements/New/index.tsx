@@ -6,6 +6,8 @@ import { faMicrochip, faTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../../styles/AdminPanel.module.css';
 import StyledButton from '../../../../components/shared/StyledButton';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const New: React.FC = () => {
     return (
         <AdminComponent>
@@ -59,4 +61,4 @@ const New: React.FC = () => {
     )
 }
 
-export default New;
+export default withAuthAdmin(New);

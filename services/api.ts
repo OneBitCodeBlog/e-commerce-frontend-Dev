@@ -1,5 +1,6 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
+import { store } from '../store'
+import { setApiData } from '../store/modules/auth/reducer'
 
 const api = axios.create({
   baseURL: 'http://localhost:3000'
@@ -15,12 +16,18 @@ api.interceptors.response.use(res => {
       uid: res.headers.uid
     };
 
-    Cookie.set("@api-data", JSON.stringify(apiData))
-
-    api.defaults.headers = apiData;
+    store.dispatch({type: setApiData.type, payload: apiData});
   }
 
   return res;
+})
+
+api.interceptors.request.use(req => {
+  if(req.url.includes('admin')) {
+    api.defaults.headers = store.getState().auth.apiData;
+  }
+  
+  return req;
 })
 
 export default api;

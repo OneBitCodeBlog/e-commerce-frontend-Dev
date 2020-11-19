@@ -7,6 +7,8 @@ import AdminListTable from '../../../../components/shared/AdminListTable';
 import AdminDeleteModal from '../../../../components/shared/AdminDeleteModal';
 import styles from '../../../../styles/AdminPanel.module.css';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const List: React.FC = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -65,4 +67,4 @@ const List: React.FC = () => {
     )
 }
 
-export default List;
+export default withAuthAdmin(List);

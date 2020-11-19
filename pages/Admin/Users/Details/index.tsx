@@ -6,6 +6,8 @@ import StyledButton from '../../../../components/shared/StyledButton';
 import styles from '../../../../styles/AdminPanel.module.css';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const Details: React.FC = () => {
     return (
         <AdminComponent>
@@ -33,4 +35,4 @@ const Details: React.FC = () => {
     )
 }
 
-export default Details;
+export default withAuthAdmin(Details);

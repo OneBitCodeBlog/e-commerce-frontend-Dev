@@ -7,6 +7,8 @@ import styles from '../../../../styles/AdminPanel.module.css';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
+import withAuthAdmin from '../../../../components/withAuthAdmin';
+
 const Details: React.FC = () => {
     return (
         <AdminComponent>
@@ -42,4 +44,4 @@ const Details: React.FC = () => {
     )
 }
 
-export default Details;
+export default withAuthAdmin(Details);

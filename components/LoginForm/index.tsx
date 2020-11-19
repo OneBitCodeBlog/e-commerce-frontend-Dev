@@ -3,9 +3,8 @@ import { InputGroup, FormControl, Button, Row, Col } from 'react-bootstrap';
 import BlueBackground from '../shared/BlueBackground';
 import Link from 'next/link';
 import api from '../../services/api';
-import Cookie from 'js-cookie';
 import { useRouter } from 'next/router';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setLoggedUser } from '../../store/modules/auth/reducer';
 
@@ -20,14 +19,16 @@ interface SignInData {
     password: string;
 }
 
-const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedUser }) => {
+const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const signIn = async ({ email, password }: SignInData): Promise<void> => {
         try {
+          api.defaults.headers = {}
           const response = await api.post('auth/v1/user/sign_in', {
             email,
             password
@@ -42,11 +43,9 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedU
             profile: profile
           };
       
-          Cookie.set('@user-data', JSON.stringify(user));
-      
-          setLoggedUser(user);
-      
-          router.push('/')
+          dispatch(setLoggedUser(user));
+
+          router.push(user.profile === 'admin' ? '/Admin/' : '/')
         } catch(err) {
           console.log(err)
         }
@@ -69,7 +68,9 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedU
                                 <FormControl 
                                     placeholder="Meu e-mail" 
                                     value={email}
+                                    type="email"
                                     onChange={(evt) => setEmail(evt.target.value)}
+                                    required
                                     />
                             </InputGroup>
 
@@ -78,7 +79,9 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedU
                                     placeholder="Senha" 
                                     value={password}
                                     type="password"
-                                    onChange={(evt) => setPassword(evt.target.value)}/>
+                                    onChange={(evt) => setPassword(evt.target.value)}
+                                    required
+                                    />
                             </InputGroup>
 
                             <Button type="submit" className="btn btn-info mt-3 w-100">{ buttonPhrase }</Button>
@@ -94,6 +97,4 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedU
     )
 }
 
-const mapDispatch = { setLoggedUser }
-
-export default connect(null, mapDispatch)(LoginForm);
+export default LoginForm;
