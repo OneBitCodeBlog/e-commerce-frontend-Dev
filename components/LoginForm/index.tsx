@@ -2,17 +2,55 @@ import { useState } from 'react';
 import { InputGroup, FormControl, Button, Row, Col } from 'react-bootstrap';
 import BlueBackground from '../shared/BlueBackground';
 import Link from 'next/link';
-import { useAuth } from '../../contexts/auth';
+import api from '../../services/api';
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/router';
+import { connect } from 'react-redux';
+
+import { setLoggedUser } from '../../store/modules/auth/reducer';
 
 interface LoginProps {
     titlePhrase: String,
-    buttonPhrase: String
+    buttonPhrase: String,
+    setLoggedUser(user): void,
 }
 
-const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
+interface SignInData {
+    email: string;
+    password: string;
+}
+
+const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase, setLoggedUser }) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const { signIn } = useAuth();
+
+    const router = useRouter();
+
+    const signIn = async ({ email, password }: SignInData) => {
+        try {
+          const response = await api.post('auth/v1/user/sign_in', {
+            email,
+            password
+          })
+      
+          const { id, email: userEmail, name, profile} = response.data.data;
+      
+          const user = {
+            id,
+            name,
+            email: userEmail,
+            profile: profile
+          };
+      
+          Cookie.set('@user-data', JSON.stringify(user));
+      
+          setLoggedUser(user);
+      
+          router.push('/')
+        } catch(err) {
+          console.log(err)
+        }
+      }
 
     return (
         <div>
@@ -51,4 +89,6 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
     )
 }
 
-export default LoginForm;
+const mapDispatch = { setLoggedUser }
+
+export default connect(null, mapDispatch)(LoginForm);
