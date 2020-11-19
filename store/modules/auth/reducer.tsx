@@ -1,15 +1,19 @@
-const INITIAL_STATE = {
-    authenticated: false,
-    user: []
-}
-   
-const auth = function reducer(state = INITIAL_STATE, action) {
-    switch(action.type) {
-        case 'AUTH_STATUS':
-        return { ...state, authenticated: true, user: action.user }
-        default:
-        return state
-    }
-}
+import { createSlice } from '@reduxjs/toolkit';
 
-export default auth
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: { user: null },
+    reducers: {
+        setLoggedUser(state, action) {
+            console.log(state)
+            console.log(state)
+            state.user = action.payload; 
+        },
+        clearLoggedUserUser(state, action) {
+            state.user = null;
+        }
+    }
+})
+
+export const { setLoggedUser, clearLoggedUserUser } = authSlice.actions;
+export default authSlice.reducer;
