@@ -11,6 +11,8 @@ import Link from 'next/link';
 
 import api from '../../../services/api';
 
+import { toast } from 'react-toastify';
+
 interface SignInData {
   email: string;
   password: string;
@@ -41,9 +43,11 @@ const Login: React.FC = () => {
 
       dispatch(setLoggedUser(user));
 
+      toast.success('Login realizado com sucesso!');
+
       router.push(user.profile === 'admin' ? '/Admin/' : '/')
     } catch (err) {
-      console.log(err)
+      toast.error('E-mail ou senha inválidos!');
     }
   }
 
