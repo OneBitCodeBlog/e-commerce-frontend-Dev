@@ -15,9 +15,9 @@ const PasswordRecovery: React.FC = () => {
     try {
       const response = await UsersService.resetPassword(email);
 
-      toast.success(response.data.message)
+      toast.success(response.data.message);
     } catch (err) {
-      toast.error(err.response.data.errors[0])
+      toast.error(err.response.data.errors[0]);
       console.log(err.response);
     }
   }
