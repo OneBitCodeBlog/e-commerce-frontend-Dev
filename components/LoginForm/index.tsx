@@ -28,7 +28,9 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
     evt.preventDefault();
     
     try {
-      const response = await UsersService.signIn({email, password});
+      const response = await UsersService.signIn({ email, password });
+
+      console.log(response)
 
       const { id, email: userEmail, name, profile } = response.data.data;
 
