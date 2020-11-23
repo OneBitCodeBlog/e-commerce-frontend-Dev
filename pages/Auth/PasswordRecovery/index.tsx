@@ -14,7 +14,7 @@ const PasswordRecovery: React.FC = () => {
     try {
       const response = await api.post('/auth/v1/user/password', {
         email,
-        redirect_url: 'http://localhost:3001/Auth/ChangePassword'
+        redirect_url: process.env.redirect_url
       });
 
       toast.success(response.data.message)
