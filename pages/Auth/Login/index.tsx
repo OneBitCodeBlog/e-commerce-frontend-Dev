@@ -51,7 +51,7 @@ const Login: React.FC = () => {
     }
   }
 
-  const handleSubmit = async (evt): Promise<void> => {
+  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault();
     await signIn({ email, password });
   }
@@ -73,7 +73,10 @@ const Login: React.FC = () => {
                       placeholder="Meu e-mail"
                       value={email}
                       type="email"
-                      onChange={(evt) => setEmail(evt.target.value)}
+                      onChange={
+                        (evt: React.ChangeEvent<HTMLInputElement>) =>
+                          setEmail(evt.target.value)
+                      }
                       required
                     />
                   </InputGroup>
@@ -83,7 +86,10 @@ const Login: React.FC = () => {
                       placeholder="Senha"
                       value={password}
                       type="password"
-                      onChange={(evt) => setPassword(evt.target.value)}
+                      onChange={
+                        (evt: React.ChangeEvent<HTMLInputElement>) => 
+                        setPassword(evt.target.value)
+                      }
                       required
                     />
                   </InputGroup>

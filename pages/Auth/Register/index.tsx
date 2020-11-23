@@ -44,11 +44,11 @@ const Register: React.FC = () => {
       if(err.response.data.errors) {
         toast.warning(err.response.data.errors.full_messages[0]);
       }
-      console.log(err.response)
+      console.log(err.response);
     }
   } 
 
-  const handleSubmit = async(evt):Promise<void> => {
+  const handleSubmit = async(evt: React.FormEvent):Promise<void> => {
     evt.preventDefault();
 
     if(password !== passwordConfirmation) {
@@ -71,41 +71,53 @@ const Register: React.FC = () => {
               <form onSubmit={handleSubmit}>
                 <InputGroup className="mt-3">
                   <FormControl 
-                    type="text"
-                    required
                     placeholder="Meu Nome"
+                    type="text"
                     value={name}
-                    onChange={evt => setName(evt.target.value)}
+                    onChange={
+                      (evt: React.ChangeEvent<HTMLInputElement>) => 
+                        setName(evt.target.value)
+                    }
+                    required
                   />
                 </InputGroup>
 
                 <InputGroup className="mt-3">
                   <FormControl 
-                    type="email"
-                    required
                     placeholder="Meu e-mail" 
+                    type="email"
                     value={email}
-                    onChange={evt => setEmail(evt.target.value)}
+                    onChange={
+                      (evt: React.ChangeEvent<HTMLInputElement>) => 
+                        setEmail(evt.target.value)
+                    }
+                    required
                   />
                 </InputGroup>
 
                 <InputGroup className="mt-3">
                   <FormControl 
-                    type="password"
-                    required
                     placeholder="Senha" 
+                    type="password"
                     value={password}
-                    onChange={evt => setPassword(evt.target.value)}
+                    onChange={
+                      (evt: React.ChangeEvent<HTMLInputElement>) => 
+                        setPassword(evt.target.value)
+                    }
+                    required
                   />
                 </InputGroup>
 
                 <InputGroup className="mt-3">
                   <FormControl 
-                    type="password"
-                    required
                     placeholder="Confirmação de senha" 
+                    type="password"
                     value={passwordConfirmation}
-                    onChange={evt => setPasswordConfirmation(evt.target.value)}
+                    onChange={
+                      (evt: React.ChangeEvent<HTMLInputElement>) => 
+                        setPasswordConfirmation(evt.target.value)
+                    }
+                    required
                   />
                 </InputGroup>
 
