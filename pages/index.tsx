@@ -12,7 +12,6 @@ const Home: React.FC = () => {
       <h1>Home Page</h1>
 
       <button onClick={() => router.push('/Auth/Login')}>Login</button>
-      <button onClick={() => router.push('/Auth/Register')}>Register</button>
     </MainComponent>
   )
 }

@@ -3,30 +3,23 @@ import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import MainComponent from '../../../components/shared/MainComponent';
 import PasswordComponent from '../../../components/shared/PasswordComponent';
 
-import api from '../../../services/api';
+import UsersService from '../../../services/users';
 
 import { toast } from 'react-toastify';
 
 const PasswordRecovery: React.FC = () => {
   const [email, setEmail] = useState('');
 
-  const requestPasswordRecovery = async (email: string): Promise<void> => {
+  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
+    evt.preventDefault();
     try {
-      const response = await api.post('/auth/v1/user/password', {
-        email,
-        redirect_url: process.env.redirect_url
-      });
+      const response = await UsersService.resetPassword(email);
 
       toast.success(response.data.message)
     } catch (err) {
       toast.error(err.response.data.errors[0])
       console.log(err.response);
     }
-  }
-
-  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
-    evt.preventDefault();
-    await requestPasswordRecovery(email);
   }
 
   return (

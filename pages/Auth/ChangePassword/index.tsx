@@ -4,14 +4,9 @@ import PasswordComponent from '../../../components/shared/PasswordComponent';
 import MainComponent from '../../../components/shared/MainComponent';
 import { useRouter } from 'next/router';
 
-import api from '../../../services/api';
+import UsersService from '../../../services/users';
 
 import{ toast } from 'react-toastify';
-
-interface ChangePasswordData {
-  password: string;
-  password_confirmation: string;
-}
 
 const ChangePassword: React.FC = () => {
   const [password, setPassword] = useState('');
@@ -19,17 +14,15 @@ const ChangePassword: React.FC = () => {
 
   const router = useRouter();
 
-  const requestChangePassword = 
-    async ({ 
-      password, 
-      password_confirmation 
-    }: ChangePasswordData ): Promise<void> => {
-
+  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
+    evt.preventDefault();
+    
     try {
       const reset_password_token = router.query.reset_password_token;
-      const response = await api.patch('/auth/v1/user/password', {
+
+      const response = await UsersService.changePassword({
         password,
-        password_confirmation,
+        password_confirmation: passwordConfirmation,
         reset_password_token
       });
 
@@ -39,14 +32,6 @@ const ChangePassword: React.FC = () => {
       toast.error(err.response.data.errors[0])
       console.log(err.response);
     }
-  }
-
-  const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
-    evt.preventDefault();
-    await requestChangePassword({
-      password, 
-      password_confirmation: passwordConfirmation
-    });
   }
 
   return (
