@@ -6,7 +6,7 @@ import StyledButton from '../StyledButton';
 
 interface AdminDeleteModalProps {
     show: boolean,
-    handleClose: () => void,
+    handleClose: (success: boolean) => void,
     target: String
 }
 
@@ -18,13 +18,13 @@ const AdminDeleteModal: React.FC<AdminDeleteModalProps> = ({show, handleClose, t
             
                 <Row>
                     <Col lg={6} xs>
-                        <div onClick={handleClose}>
+                        <div onClick={() => handleClose(true)}>
                             <StyledButton icon={faTrash} action={"Excluir"} type_button="red" />
                         </div>
                     </Col>
 
                     <Col lg={6} xs>
-                        <div onClick={handleClose}>
+                        <div onClick={() => handleClose(false)}>
                             <StyledButton icon={faTimes} action={"Cancelar"} type_button="blue" />
                         </div>
                     </Col>
