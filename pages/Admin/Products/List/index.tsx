@@ -112,7 +112,7 @@ const List: React.FC = () => {
                     {`#${product.id}`}
                   </td>
                   <td>
-                    {product.status == 'available' ? 'Disponível' : 'Indisponível'}
+                    {product.status === 'available' ? 'Disponível' : 'Indisponível'}
                   </td>
                   <td>
                     <div className={styles.hover}>
