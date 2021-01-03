@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '../store';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
@@ -20,6 +23,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </div>
       </PersistGate>
+      <ToastContainer />
     </Provider>
   )
 }

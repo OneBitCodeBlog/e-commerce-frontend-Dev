@@ -7,6 +7,8 @@
 
 .admin_panel table {
     color: white;
+    border-collapse: separate;
+    border-spacing: 0 1em;
 }
 
 .table_line {
@@ -46,4 +48,12 @@
     background-color: var(--color-background);
     color: white;
     border: none;
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.hover :hover {
+    color: #0056b3;
 }
