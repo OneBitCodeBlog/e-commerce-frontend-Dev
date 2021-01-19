@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Form, Col, Row } from 'react-bootstrap';
 import { faTimes, faGamepad } from '@fortawesome/free-solid-svg-icons';
-import styles from '../../../styles/AdminPanel.module.css';
+import styles from '../styles.module.css';
 import StyledButton from '../../shared/StyledButton';
 import ProductImage from './ProductImage';
 
@@ -39,6 +39,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
 
   const [productImage, setProductImage] = useState('');
 
+  const [featured, setFeatured] = useState('false');
+
   const product: Product = useSelector(state => state.product);
 
   // o produto necessita ter uma ou várias categorias e um requisito de sistema, por isso precisamos fazer o fetch dos mesmos e listá-los no form para utilização.
@@ -71,6 +73,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
       setPrice(product.price);
       setStatus(product.status);
 
+      setFeatured(product.featured);
+
       setProductImage(product?.image_url);
     }
   }, [product])
@@ -100,6 +104,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
     formData.append('product[status]', status);
 
     formData.append('product[productable]', 'game');
+
+    formData.append('product[featured]', featured);
 
     if (image) {
       formData.append('product[image]', image);
@@ -291,8 +297,24 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>              
-              <Form.Group as={Col} md={6} sm={12} className="p-2">
+            <Form.Row>    
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
+                <Form.Label>Em destaque:</Form.Label>
+                <Form.Control 
+                  as="select"
+                  className={styles.secundary_input}
+                  value={featured}
+                  onChange={
+                    (evt: React.ChangeEvent<HTMLSelectElement>) =>
+                      setFeatured(evt.target.value)
+                  }
+                >
+                  <option value="false">Não</option>
+                  <option value="true">Sim</option>
+                </Form.Control>
+              </Form.Group>  
+
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
                 <Form.Label>Preço</Form.Label>
                 <Form.Control
                   type="text"
@@ -307,7 +329,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
                 />
               </Form.Group>
 
-              <Form.Group as={Col} md={6} sm={12} className="p-2">
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
                 <Form.Label>Status</Form.Label>
                 <Form.Control
                   as="select"

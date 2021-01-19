@@ -1,0 +1,26 @@
+.admin_panel {
+  background-color: var(--color-secondary);
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.details_button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.new_form {
+  text-align: left;
+  padding: 20px;
+}
+
+.secundary_input, .secundary_input:focus {
+  background-color: var(--color-background);
+  color: white;
+  border: none;
+}

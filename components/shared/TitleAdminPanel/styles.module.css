@@ -1,0 +1,7 @@
+.title_and_path {
+  text-align: left;
+}
+
+.title_and_path h4, .title_and_path span {
+  display: inline;
+}

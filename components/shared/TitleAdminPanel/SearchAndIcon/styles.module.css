@@ -1,0 +1,23 @@
+.input {
+  background-color: var(--color-secondary);
+  border: none;
+  height: 30px;
+}
+
+.input:focus {
+  background-color: var(--color-secondary);
+}
+
+.titleButton {
+  margin-top: -5px;
+}
+
+.search_icon svg {
+  margin-top: 3.5px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.search_icon svg:hover {
+  color: var(--color-hover);
+}

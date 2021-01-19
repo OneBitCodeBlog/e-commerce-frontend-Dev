@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import styles from '../../../styles/AdminTitle.module.css';
+import styles from './styles.module.css';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import TitleAndPath from './TitleAndPath';
 import SearchAndIcon from './SearchAndIcon';
@@ -22,7 +22,7 @@ const TitleAdminPanel: React.FC<TitleAdminPanelProps> = ({ title, path, icon, ne
                             <TitleAndPath title={title} path={path} />
                         </Col>
 
-                        <Col lg={{span: 4, offset: 2}} xs={8}>
+                        <Col lg={6} xs={8}>
                             <SearchAndIcon icon={icon} newPath={newPath}/>
                         </Col>
                     </>

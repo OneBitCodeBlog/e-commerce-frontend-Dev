@@ -12,6 +12,7 @@ export default interface Product {
   mode: string;
   developer: string;
   release_date: string;
+  featured: string;
   categories: Category[];
   system_requirement: SystemRequirement;
 }

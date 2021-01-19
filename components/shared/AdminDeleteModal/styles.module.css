@@ -1,0 +1,10 @@
+.modal {
+  top: 20%;
+}
+
+.modal_body {
+  background-color: var(--color-primary);
+  padding: 50px;
+  text-align: center;
+  font-size: 29px;
+}
