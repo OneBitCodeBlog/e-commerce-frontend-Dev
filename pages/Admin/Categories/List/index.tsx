@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faGhost } from '@fortawesome/free-solid-svg-icons';
 import AdminListTable from '../../../../components/shared/AdminListTable';
 import AdminDeleteModal from '../../../../components/shared/AdminDeleteModal';
-import styles from '../../../../styles/AdminPanel.module.css';
 import NoData from '../../../../components/shared/NoData';
 
 import withAuthAdmin from '../../../../components/withAuthAdmin';
@@ -99,10 +98,10 @@ const List: React.FC = () => {
           <AdminListTable first_title="Nome da categoria" meta={data.meta}>
             {
               data.categories.map(category => (
-                <tr className={styles.table_line} key={category.id}>
+                <tr key={category.id}>
                   <td>{category.name}</td>
                   <td>
-                    <div className={styles.hover}>
+                    <div>
                       <FontAwesomeIcon 
                         icon={faEdit} 
                         onClick={() => handleEdit(category)}
@@ -111,7 +110,7 @@ const List: React.FC = () => {
                   </td>
 
                   <td>
-                    <div className={styles.hover}>
+                    <div>
                       <FontAwesomeIcon 
                         icon={faTrash} 
                         onClick={() => handleShow(category.id)} 
