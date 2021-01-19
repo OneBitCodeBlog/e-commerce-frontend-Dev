@@ -7,7 +7,7 @@ import StyledButton from '../../../components/shared/StyledButton';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 
-import styles from '../../../styles/AdminPanel.module.css';
+import styles from '../styles.module.css';
 import Category from '../../../dtos/Category';
 
 import { clearCategoryToEdit } from '../../../store/modules/admin/category/reducer';

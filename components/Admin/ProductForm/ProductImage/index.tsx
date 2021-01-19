@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import StyledButton from '../../../shared/StyledButton';
 
-import styles from '../../../../styles/ProductForm.module.css';
+import styles from './styles.module.css';
 
 // estamos recebendo a função de setImage que virá do ProductForm, necessitamos dela pois vamos mandar o arquivo para a api e para exibir a imagem na tela utilizaremos o método Url.createObjectUrl que irá criar uma url fictícia para a imagem e assim a mesma será exibida na tela.
 // já o productImage será utilizado para exibir a image que foi recebida da api na edição do produto

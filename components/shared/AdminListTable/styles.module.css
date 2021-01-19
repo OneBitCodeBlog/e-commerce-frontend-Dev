@@ -1,0 +1,29 @@
+.admin_panel {
+  background-color: var(--color-secondary);
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.admin_panel table {
+  color: white;
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+.table_line {
+  background-color: var(--color-background);
+  padding-right: 110px;
+}
+
+.table_line:hover {
+  color: white!important;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.hover :hover {
+  color: #0056b3;
+}

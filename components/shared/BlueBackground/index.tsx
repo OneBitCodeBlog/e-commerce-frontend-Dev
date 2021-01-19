@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/Background.module.css';
+import styles from './styles.module.css';
 
 const BlueBackground: React.FC = ({ children }) => {
     return (
