@@ -7,6 +7,8 @@
     --color-gray-light: #7DA1BC;
     --color-blue-light: #00CFFF;
     --color-white: #FFFFFF;
+    --color-hover: #055bd8;
+    --color-active: #71efff;
 }
 
 html,
@@ -21,4 +23,33 @@ body {
 
 body, .sticky-footer-wrapper {
     min-height:100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--color-hover);
+}
+
+a:hover svg {
+    transition: color 0.2s;
+    color: var(--color-hover);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.7);
+    transition: filter 0.2s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(1);
 }

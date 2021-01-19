@@ -55,6 +55,6 @@ o mesmo se aplica nos demais estilos abaixo
 
 .admin_panel table tr td div:hover {
   cursor: pointer;
-  color: #00cfff;
+  color: var(--color-hover);
   transition: color 0.2s;
 }

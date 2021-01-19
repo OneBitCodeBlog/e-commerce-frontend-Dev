@@ -13,6 +13,10 @@
 
 .background a svg:hover {
   cursor: pointer;
-  color: #00cfff;
+  color: var(--color-hover);
   transition: color 0.2s;
+}
+
+.active {
+  color: var(--color-active);
 }
