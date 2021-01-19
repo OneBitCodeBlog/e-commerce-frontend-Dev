@@ -7,6 +7,8 @@ import { faSignal, faUser, faGamepad, faCheckSquare, faLaptop, faTicketAlt, faDo
 
 import { useRouter } from 'next/router';
 
+import SignOutService from '../../../util/SignOutService';
+
 const LateralMenu: React.FC = () => {
   const router = useRouter();
 
@@ -75,8 +77,8 @@ const LateralMenu: React.FC = () => {
           </a>
         </Link>
 
-        <Link href="/Admin/#">
-          <a>
+        <Link href="/Auth/Login">
+          <a onClick={SignOutService.execute}>
             <FontAwesomeIcon icon={faSignOutAlt} color="var(--color-gray-light)" className="mr-3" />
             Sair
             <hr />

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../../styles/Header.module.css';
+import styles from './styles.module.css';
 import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons';
