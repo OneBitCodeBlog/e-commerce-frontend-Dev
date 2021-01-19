@@ -9,7 +9,7 @@ interface TitleAndPath {
 const TitleAndPath: React.FC<TitleAndPath> = ({title, path}) => {
     return (
         <>
-            <h4>{ title }</h4>
+            <h4 className={styles.title}>{ title }</h4>
             <span className={styles.styledPath}>{ path }</span>
         </>
     )

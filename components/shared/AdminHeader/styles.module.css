@@ -20,3 +20,29 @@
 .active {
   color: var(--color-active);
 }
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 990px) {
+  .background {
+    margin: 20px 1px;
+  }
+
+  .menu {
+    justify-content: space-around;
+  }
+
+  .profile {
+    display: none;
+  }
+}
