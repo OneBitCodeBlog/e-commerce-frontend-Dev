@@ -19,12 +19,12 @@ const CategoriesService = {
 
   // função para a crição de uma nova categoria
   create: (name: string) => {
-    return api.post<void>('/admin/v1/categories', { name });
+    return api.post<void>('/admin/v1/categories', { category: { name } });
   },
 
   // função para a atualização da categoria
   update: ({id, name}: Category) => {
-    return api.put<void>(`/admin/v1/categories/${id}`, { name });
+    return api.put<void>(`/admin/v1/categories/${id}`, { category: { name } });
   },
 
   // função para remoção de uma categoria
