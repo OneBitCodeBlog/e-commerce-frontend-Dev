@@ -5,6 +5,7 @@ import category from './admin/category/reducer';
 import product from './admin/product/reducer';
 import systemRequirement from './admin/systemRequirement/reducer';
 import coupon from './admin/coupon/reducer';
+import user from './admin/user/reducer';
 
 import search from './admin/shared/search/reducer';
 
@@ -14,5 +15,6 @@ export default combineReducers({
     product,
     systemRequirement,
     coupon,
+    user,
     search
 });

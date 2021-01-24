@@ -3,4 +3,6 @@ export default interface User {
   name: string;
   email: string;
   profile: string;
+  password?: string;
+  password_confirmation?: string;
 }

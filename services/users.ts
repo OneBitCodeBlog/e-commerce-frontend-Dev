@@ -75,11 +75,11 @@ const UsersService = {
   },
 
   create(user: User) {
-    return api.post<void>('/admin/v1/users', { user });
+    return api.post<void>('/admin/v1/users', { user: user });
   },
 
   update(user: User) {
-    return api.put(`/admin/v1/users/${user.id}`, user);
+    return api.put(`/admin/v1/users/${user.id}`, { user: user });
   },
 
   delete(id: number) {
