@@ -14,11 +14,11 @@ const SystemRequirementsService = {
   },
 
   create: (system_requirement: SystemRequirement) => {
-    return api.post<void>('/admin/v1/system_requirements', system_requirement);
+    return api.post<void>('/admin/v1/system_requirements', { system_requirement: system_requirement} );
   },
 
   update: (system_requirement: SystemRequirement) => {
-    return api.patch<void>(`/admin/v1/system_requirements/${system_requirement.id}`, system_requirement);
+    return api.patch<void>(`/admin/v1/system_requirements/${system_requirement.id}`, { system_requirement: system_requirement });
   },
 
   delete: (id: number) => {
