@@ -1,0 +1,27 @@
+.product {
+  margin: 15px auto;
+}
+
+.image {
+  width: 100%;
+}
+
+.button button {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.product_details {
+  background: var(--color-primary);
+  padding: 10px;
+}
+
+.product_details p {
+  margin: 0;
+}
+
+.normal_button {
+  background: var(--color-secondary);
+  border: none;
+}
