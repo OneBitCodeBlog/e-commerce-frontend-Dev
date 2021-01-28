@@ -41,6 +41,11 @@ a:hover svg {
     color: var(--color-hover);
 }
 
+a:active,
+a:active svg {
+    color: var(--color-active);
+}
+
 * {
     box-sizing: border-box;
 }

@@ -1,6 +1,22 @@
 .background {
   background-color: var(--color-primary);
   padding: 20px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 500;
+}
+
+@media screen and (max-width: 991px) {
+  .logo {
+    display: none !important;
+  }
+
+  .social_medias {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .social_medias svg {
+    font-size: 1.4rem;
+  }
 }
