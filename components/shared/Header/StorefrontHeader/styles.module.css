@@ -4,3 +4,16 @@
   font-size: 1.4rem;
   font-weight: 500;
 }
+
+.background svg {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.background svg:hover {
+  color: var(--color-hover);
+}
+
+.background svg:active {
+  color: var(--color-active);
+}
