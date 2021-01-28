@@ -1,11 +1,11 @@
 import MainComponent from '../components/shared/MainComponent';
-import ProductInfo from '../components/shared/ProductInfo';
+import HighlightedProducts from '../components/Storefront/HighlightedProducts';
 
 const Home: React.FC = () => {
   return (
     <MainComponent>
       <h1>Home</h1>
-      <ProductInfo/>
+      <HighlightedProducts title="Em destaque"/>
     </MainComponent>
   )
 }

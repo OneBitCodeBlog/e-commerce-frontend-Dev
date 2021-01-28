@@ -16,7 +16,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ type = 'normal' }) => {
         />
       </div>
 
-      <div className={styles.product_info}>
+      <div className={styles.product_details}>
         <div>
           <p>
             God of War

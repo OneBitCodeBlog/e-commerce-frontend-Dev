@@ -13,7 +13,7 @@
 }
 
 .product_details {
-  background: var(--color-primary);
+  background-color: var(--color-primary);
   padding: 10px;
 }
 
