@@ -25,7 +25,7 @@ const Storefront: React.FC = () => {
             product => (
               <Carousel.Item key={product.id}>
                 <img 
-                  className="d-block w-100"
+                  className={`d-block w-100 ${styles.carousel_image}`}
                   src={product.image_url}
                   alt={product.name}
                 />

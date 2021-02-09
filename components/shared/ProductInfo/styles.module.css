@@ -4,6 +4,7 @@
 
 .image {
   width: 100%;
+  max-height: 143.44px;
 }
 
 .button button {
@@ -19,9 +20,35 @@
 
 .product_details p {
   margin: 0;
+  height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .normal_button {
   background: var(--color-secondary);
   border: none;
+}
+
+@media screen and (max-width: 1199px) {
+  .image {
+    max-height: 118.13px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .image {
+    max-height: 84.38px;
+  }
+
+  .product_details p {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .image {
+    max-height: 250px;
+  }
 }

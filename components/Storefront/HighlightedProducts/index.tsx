@@ -1,6 +1,4 @@
-import { Row, Col } from 'react-bootstrap';
-import StyledButton from '../../shared/StyledButton';
-import Link from 'next/link';
+import { Row, Col, Button } from 'react-bootstrap';
 import styles from './styles.module.css';
 import ProductInfo from '../../shared/ProductInfo';
 
@@ -20,11 +18,13 @@ const HightlightedProducts: React.FC<HightlightedProductsProps> = ({ title, type
 
         <hr className={styles.line}/>
 
-        <Link href="#">
-          <a>
-            <StyledButton action="Ver Mais" type_button="blue"/>
-          </a>
-        </Link>
+        <Button
+          className={
+            `${type === 'highlighted' ? styles.highlighted_button : styles.normal_button}`
+          }
+        >
+          Ver Mais
+        </Button>
       </Row>
 
       <Row>

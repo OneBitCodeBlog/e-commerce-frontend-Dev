@@ -33,6 +33,35 @@
   }
 }
 
+.normal_button {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9em;
+  background: var(--color-secondary);
+  outline: none;
+  border: 0;
+  border-radius: 2px;
+  padding: 5px 20px;
+}
+
+.highlighted_button {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9em;
+  background: transparent;
+  border-radius: 2px;
+  padding: 5px 20px;
+  border-width: 1.5px;
+  border-color: var(--color-active);
+}
+
+.highlighted_button:hover,
+.highlighted_button:focus {
+  background: var(--color-active);
+  border-color: var(--color-active);
+  color: black;
+}
+
 @media screen and (max-width: 767px) {
   .line {
     width: 35%;
