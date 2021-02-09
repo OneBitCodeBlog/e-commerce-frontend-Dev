@@ -4,12 +4,15 @@ import Link from 'next/link';
 import styles from './styles.module.css';
 import ProductInfo from '../../shared/ProductInfo';
 
+import ProductHome from '../../../dtos/ProductHome';
+
 interface HightlightedProductsProps {
   title: string;
   type?: string;
+  products: ProductHome[];
 }
 
-const HightlightedProducts: React.FC<HightlightedProductsProps> = ({ title, type }) => {
+const HightlightedProducts: React.FC<HightlightedProductsProps> = ({ title, type, products }) => {
   return (
     <div className={styles.products}>
       <Row className={styles.products_header}>
@@ -25,21 +28,18 @@ const HightlightedProducts: React.FC<HightlightedProductsProps> = ({ title, type
       </Row>
 
       <Row>
-        <Col md={3}>
-          <ProductInfo type={type}/>
-        </Col>
-
-        <Col md={3}>
-          <ProductInfo type={type}/>
-        </Col>
-
-        <Col md={3}>
-          <ProductInfo type={type}/>
-        </Col>
-
-        <Col md={3}>
-          <ProductInfo type={type}/>
-        </Col>
+        {
+          products?.map(
+            product => (
+              <Col md={3} key={product.id}>
+                  <ProductInfo 
+                    type={type}
+                    product={product}
+                  />
+              </Col>
+            )
+          )
+        }
       </Row>
 
     </div>
