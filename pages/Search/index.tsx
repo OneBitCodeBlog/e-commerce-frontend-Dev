@@ -31,7 +31,7 @@ const Search: React.FC = () => {
     direction 
   } = router.query;
 
-  const [search, setSearch] = useState(searchRouter?.toString());
+  const [search, setSearch] = useState(searchRouter?.toString() || '');
   const [order, setOrder] = useState(() => {
     if (!!orderRouter) {
       return `${orderRouter.toString()}-${direction.toString()}`;
@@ -68,7 +68,7 @@ const Search: React.FC = () => {
         direction
       })
     );
-  }, [setSearch, page, category, price, orderRouter, direction]);
+  }, [searchRouter, page, category, price, orderRouter, direction]);
 
   useEffect(() => {
     router.push({
@@ -84,7 +84,7 @@ const Search: React.FC = () => {
 
   const handleSearch = (): void => {
     router.push(`
-      /Search${ProductSearchService.execute({ search })}
+      /Search?search=${search}&length=12&page=1&order=price&direction=asc
     `);
   }
 
@@ -159,8 +159,8 @@ const Search: React.FC = () => {
               >
                 <option value="price-asc">Menor preço</option>
                 <option value="price-desc">Maior preço</option>
-                <option value="release_date-asc">Lançamentos</option>
-                <option value="release_date-desc">Mais antigos</option>
+                <option value="release_date-desc">Lançamentos</option>
+                <option value="release_date-asc">Mais antigos</option>
               </select>
             </div>
           </Col>

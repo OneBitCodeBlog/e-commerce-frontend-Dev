@@ -8,9 +8,12 @@ import HomeService from '../services/home';
 
 import { toast } from 'react-toastify';
 
+import { useRouter } from 'next/router';
+
 const Storefront: React.FC = () => {
   const { data, error } = useSwr('/storefront/v1/home', HomeService.index);
   const { featured, last_releases, cheapest } = { ...data };
+  const router = useRouter();
 
   if (error)  {
     toast.error('Erro ao obter dados da home!');
@@ -39,16 +42,37 @@ const Storefront: React.FC = () => {
         title="Ofertas da semana" 
         type="highlighted"
         products={cheapest}
+        handleSeeMore={
+          () => router.push({
+            pathname: '/Search',
+            query: {
+              order: 'price',
+              direction: 'asc'
+            }
+          })
+        }
       />
 
       <HightlightedProducts 
         title="Lançamentos"
         products={last_releases}
+        handleSeeMore={
+          () => router.push({
+            pathname: '/Search',
+            query: {
+              order: 'release_date',
+              direction: 'desc'
+            }
+          })
+        }
       />
 
       <HightlightedProducts 
         title="Mais populares"
         products={featured}
+        handleSeeMore={
+          () => router.push({pathname: '/Search'})
+        }
       />
     </MainComponent>
   )
