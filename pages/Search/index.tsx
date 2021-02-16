@@ -159,8 +159,8 @@ const Search: React.FC = () => {
               >
                 <option value="price-asc">Menor preço</option>
                 <option value="price-desc">Maior preço</option>
-                <option value="release_date-desc">Lançamentos</option>
-                <option value="release_date-asc">Mais antigos</option>
+                <option value="release_date-asc">Lançamentos</option>
+                <option value="release_date-desc">Mais antigos</option>
               </select>
             </div>
           </Col>
