@@ -65,7 +65,7 @@ const Search: React.FC = () => {
         order: orderRouter,
         direction
       })
-    )
+    );
   }, [setSearch, page, category, price, orderRouter, direction]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Search: React.FC = () => {
     });
   }, [order]);
 
-  const handleSearch = ():void => {
+  const handleSearch = (): void => {
     router.push(`
       /Search${ProductSearchService.execute({ search })}
     `);
@@ -92,7 +92,7 @@ const Search: React.FC = () => {
   }
 
   if (categoriesError) {
-    toast.error('Erro ao obter as categorias');
+    toast.error('Erro ao obter as categorias.');
     console.log(categoriesError);
   }
 
@@ -108,7 +108,22 @@ const Search: React.FC = () => {
         <Row className="text-center col-md-6 offset-md-3">
           <Col xs={10}>
             <InputGroup>
-              <FormControl placeholder="Pesquise!!"/>
+              <FormControl 
+                placeholder="Pesquise!!"
+                value={search}
+                onChange={
+                  (evt: React.ChangeEvent<HTMLInputElement>) => 
+                    setSearch(evt.target.value)
+                }
+
+                onKeyUp={
+                  (evt: React.KeyboardEvent<HTMLInputElement>) => {
+                    if (evt.key.toLowerCase() === 'enter') {
+                      handleSearch();
+                    }
+                  }
+                }
+              />
             </InputGroup>
           </Col>
 
@@ -125,14 +140,21 @@ const Search: React.FC = () => {
         <Row>
           <Col sm={6} xs={12} className={styles.results}>
             <span>
-              16 resultado(s)
+              {data?.meta?.total} resultado(s)
             </span>
           </Col>
 
           <Col sm={6} xs={12}>
             <div className={styles.ordenation}>
               <strong className="mr-3">Ordernar por:</strong>
-              <select className={styles.secondary}>
+              <select 
+                className={styles.secondary}
+                value={order}
+                onChange={
+                  (evt: React.ChangeEvent<HTMLSelectElement>) => 
+                    setOrder(evt.target.value)
+                }
+              >
                 <option value="price-asc">Menor preço</option>
                 <option value="price-desc">Maior preço</option>
                 <option value="release_date-asc">Lançamentos</option>
@@ -143,25 +165,80 @@ const Search: React.FC = () => {
         </Row>
 
         <Row>
-          <select className={styles.primary}>
-            <option>Categoria</option>
-            <option>1</option>
-            <option>2</option>
+          <select 
+            className={styles.primary}
+            onChange={
+              (evt: React.ChangeEvent<HTMLSelectElement>) => {
+                router.push({
+                  pathname: router.pathname,
+                  query: {
+                    ...router.query,
+                    page: 1,
+                    category: evt.target.value
+                  }
+                })
+              }
+            }
+          >
+            <option value="">Categoria</option>
+            {
+              categoriesData?.categories?.map(
+                category => (
+                  <option
+                    key={category.id}
+                    value={category.id}
+                  >
+                    {category.name}
+                  </option>
+                )
+              )
+            }
           </select>
 
-          <select className={styles.primary}>
-            <option>Preço</option>
-            <option>1</option>
-            <option>2</option>
+          <select 
+            className={styles.primary}
+            onChange={
+              (evt: React.ChangeEvent<HTMLSelectElement>) => {
+                router.push({
+                  pathname: router.pathname,
+                  query: {
+                    ...router.query,
+                    page: 1,
+                    price: evt.target.value
+                  }
+                })
+              }
+            }
+          >
+            <option value="">Preço</option>
+            <option value="0-50">0 - 50</option>
+            <option value="50.01-100">50 - 100</option>
+            <option value="100.01-150">100 - 150</option>
+            <option value="150.01">+ 150</option>
           </select>
         </Row>
 
         <div className="mt-4">
-          <h5>
-            Resultados para Resident Evil 2
-          </h5>
+          {
+            router?.query?.search &&
+            <h5>
+              Resultados para {router?.query?.search}
+            </h5>
+          }
         </div>
       </div>
+
+      <Row className="mt-4 mb-4">
+        {
+          data?.products?.map(
+            product => (
+              <Col md={3} key={product.id}>
+                <ProductInfo product={product}/>
+              </Col>
+            )
+          )
+        }
+      </Row>
 
 
     </MainComponent>
