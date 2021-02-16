@@ -16,6 +16,8 @@ import CategoriesService from '../../services/categories';
 
 import { toast } from 'react-toastify';
 
+import Pagination from '../../components/shared/Pagination';
+
 const defaultUrl = '/storefront/v1/products';
 
 const Search: React.FC = () => {
@@ -43,7 +45,7 @@ const Search: React.FC = () => {
       ProductSearchService.execute({
         search,
         order: orderRouter,
-        direction: direction
+        direction
       })
     )
   );
@@ -240,6 +242,13 @@ const Search: React.FC = () => {
         }
       </Row>
 
+      {
+        data?.meta?.total > 0 &&
+        <Pagination
+          className={styles.pagination}
+          {...data?.meta}
+        />
+      }
 
     </MainComponent>
   );
