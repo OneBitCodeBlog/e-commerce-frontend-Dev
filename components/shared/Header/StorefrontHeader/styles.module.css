@@ -17,3 +17,7 @@
 .background svg:active {
   color: var(--color-active);
 }
+
+.hidden {
+  display: none;
+}
