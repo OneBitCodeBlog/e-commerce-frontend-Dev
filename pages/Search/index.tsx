@@ -1,11 +1,100 @@
+import { useState, useEffect } from 'react';
 import MainComponent from '../../components/shared/MainComponent';
 import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
 
+import ProductInfo from '../../components/shared/ProductInfo';
+
+import useSwr from 'swr';
+import { useRouter } from 'next/router';
+
+import SearchService from '../../services/search';
+import ProductSearchService from '../../util/ProductSearchService';
+import CategoriesService from '../../services/categories';
+
+import { toast } from 'react-toastify';
+
+const defaultUrl = '/storefront/v1/products';
+
 const Search: React.FC = () => {
-  const handleSearch = () => {}
+  const router = useRouter();
+  const { 
+    search: searchRouter, 
+    page, 
+    category, 
+    price, 
+    order: orderRouter, 
+    direction 
+  } = router.query;
+
+  const [search, setSearch] = useState(searchRouter?.toString());
+  const [order, setOrder] = useState(() => {
+    if (!!orderRouter) {
+      return `${orderRouter.toString()}-${direction.toString()}`;
+    }
+
+    return 'price-asc';
+  });
+
+  const [url, setUrl] = useState(() => (
+      defaultUrl +
+      ProductSearchService.execute({
+        search,
+        order: orderRouter,
+        direction: direction
+      })
+    )
+  );
+
+  const { data, error } = useSwr(url, SearchService.execute);
+
+  const { data: categoriesData, error: categoriesError } = 
+    useSwr('/storefront/v1/categories?length=999', CategoriesService.index);
+
+
+  useEffect(() => {
+    setUrl(
+      defaultUrl +
+      ProductSearchService.execute({
+        search: searchRouter,
+        page,
+        category,
+        price,
+        order: orderRouter,
+        direction
+      })
+    )
+  }, [setSearch, page, category, price, orderRouter, direction]);
+
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        page: 1,
+        order: order.split('-')[0],
+        direction: order.split('-')[1]
+      }
+    });
+  }, [order]);
+
+  const handleSearch = ():void => {
+    router.push(`
+      /Search${ProductSearchService.execute({ search })}
+    `);
+  }
+
+  if (error) {
+    toast.error('Erro ao pesquisa produtos.');
+    console.log(error);
+  }
+
+  if (categoriesError) {
+    toast.error('Erro ao obter as categorias');
+    console.log(categoriesError);
+  }
 
   return (
     <MainComponent>
