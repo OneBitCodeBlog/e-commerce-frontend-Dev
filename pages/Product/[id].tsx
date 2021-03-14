@@ -7,40 +7,51 @@ import styles from './styles.module.css';
 import BlueBackground from '../../components/shared/BlueBackground';
 import StyledButton from '../../components/shared/StyledButton';
 
+import useSwr from 'swr';
+import { useRouter } from 'next/router';
+import ProductShowService from '../../services/productShow';
+
+import { toast } from 'react-toastify';
+import { format, parseJSON } from 'date-fns';
+
 const Product: React.FC = () => {
+  const router = useRouter();
+  const { data, error } = useSwr(`/storefront/v1/products/${router?.query?.id}`, ProductShowService.show);
+
+  if (error) {
+    toast.error('Erro ao obter o produto');
+    console.log(error);
+  }
+
   return (
     <MainComponent>
       <Row className="mt-4 mb-4">
         <Col md={6}>
           <img 
             className="w-100"
-            src="/assets/product_image.png" 
-            alt="Product"
+            src={data?.image_url} 
+            alt={data?.name}
           />
 
           <div className="mt-3">
             <h6 className={styles.subtitle}>Sobre o Jogo</h6>
 
-            <p>
-              Quia hic dolores voluptate aspernatur dolorem iste aut voluptas. Laudantium earum vitae quae nobis ut. Eum dolorum qui quam numquam odit eius.
-              Voluptas autem animi nihil. Nihil qui labore ipsum optio tempora impedit. Enim commodi ut voluptate maxime et eos exercitationem blanditiis ut.
-              Repellat eaque vel voluptas suscipit voluptatem adipisci quasi qui nesciunt. Optio illo qui enim. Mollitia laborum unde. Cupiditate voluptatem ducimus nam voluptatibus eum. Aut delectus sit et.
-            </p>
+            <p>{data?.description}</p>
 
             <ul className={styles.list}>
               <li>
                 <strong>Desenvolvedora:</strong>
-                <span>Sony</span>
+                <span>{data?.developer}</span>
               </li>
 
               <li>
                 <strong>Modo:</strong>
-                <span>pvp</span>
+                <span>{data?.mode}</span>
               </li>
 
               <li>
                 <strong>Status:</strong>
-                <span>Disponível</span>
+                <span>{data?.status === 'available' ? 'Disponível' : 'Indisponível'}</span>
               </li>
             </ul>
           </div>
@@ -50,34 +61,47 @@ const Product: React.FC = () => {
           <BlueBackground>
             <Row className="mb-4">
               <Col>
-                <h1 className={styles.title}>God of War</h1>
+                <h1 className={styles.title}>{data?.name}</h1>
 
                 <div>
-                  <Badge variant="primary ml-1" className={styles.primary_badge}>Ação</Badge>
-                  <Badge variant="primary ml-1" className={styles.primary_badge}>Aventura</Badge>
-                  <Badge variant="primary ml-1" className={styles.primary_badge}>Indie</Badge>
+                  {
+                    data?.categories?.map(
+                      category => 
+                        <Badge 
+                          variant="primary ml-1" 
+                          className={styles.primary_badge}
+                        >
+                          {category.name}
+                        </Badge>
+                    )
+                  }
                 </div>
               </Col>
 
               <Col>
-                <strong className="float-right">R$ 89,90</strong>
+                <strong className="float-right">{`R$ ${data?.price}`}</strong>
               </Col>
             </Row>
 
             <Row className={styles.mb_50}>
               <Col>
                 <Badge variant="primary" className={styles.secondary_badge}>LANÇAMENTO</Badge>
-                <p>23/04/2021</p>
+                <p>
+                  {
+                    data?.release_date &&
+                      format(parseJSON(data.release_date), 'dd/MM/yyyy')
+                  }
+                </p>
               </Col>
 
               <Col>
                 <Badge variant="primary" className={styles.secondary_badge}>VENDIDO</Badge>
-                <p>347</p>
+                <p>{data?.sells_count}</p>
               </Col>
 
               <Col>
                 <Badge variant="primary" className={styles.secondary_badge}>FAVORITADO</Badge>
-                <p>517 vezes</p>
+                <p>{data?.favorited_count}</p>
               </Col>
             </Row>
 
@@ -102,27 +126,27 @@ const Product: React.FC = () => {
                 <ul className={styles.list}>
                   <li>
                     <strong>SO:</strong>
-                    <span>Windows 7</span>
+                    <span>{data?.system_requirement.operational_system}</span>
                   </li>
 
                   <li>
                     <strong>Armazenamento:</strong>
-                    <span>35 GB</span>
+                    <span>{data?.system_requirement.storage}</span>
                   </li>
 
                   <li>
                     <strong>Processador:</strong>
-                    <span>Intel Core I7 7700</span>
+                    <span>{data?.system_requirement.processor}</span>
                   </li>
 
                   <li>
                     <strong>Memória:</strong>
-                    <span>16 GB</span>
+                    <span>{data?.system_requirement.memory}</span>
                   </li>
 
                   <li>
                     <strong>Placa de Vídeo:</strong>
-                    <span>NVIDIA GeForce</span>
+                    <span>{data?.system_requirement.video_board}</span>
                   </li>
                 </ul>
               </div>
