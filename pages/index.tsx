@@ -10,9 +10,19 @@ import { toast } from 'react-toastify';
 
 import { useRouter } from 'next/router';
 
-const Storefront: React.FC = () => {
-  const { data, error } = useSwr('/storefront/v1/home', HomeService.index);
-  const { featured, last_releases, cheapest } = { ...data };
+import HomeIndexData from '../dtos/HomeIndexData';
+
+interface StorefrontProps {
+  products: HomeIndexData;
+}
+
+const Storefront: React.FC<StorefrontProps> = ({ products }) => {
+  const { data, error } = useSwr(
+    '/storefront/v1/home', 
+    HomeService.index, 
+    { initialData: products }
+  );
+  const { featured, last_releases, cheapest } = data;
   const router = useRouter();
 
   if (error)  {
@@ -80,6 +90,11 @@ const Storefront: React.FC = () => {
       />
     </MainComponent>
   )
+}
+
+export async function getStaticProps(context) {
+  const products = await HomeService.index('/storefront/v1/home');
+  return { props: { products } }
 }
 
 export default Storefront;
