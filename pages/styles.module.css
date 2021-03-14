@@ -7,3 +7,7 @@
 .carousel_image {
   max-height: 499.5px;
 }
+
+.carousel_item {
+  cursor: pointer;
+}
