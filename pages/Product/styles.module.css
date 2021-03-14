@@ -1,0 +1,48 @@
+.primary_badge {
+  opacity: 0.6;
+  background-color: var(--color-secondary);
+}
+
+.secondary_badge {
+  background-color: var(--color-secondary);
+}
+
+.line {
+  background-color: white;
+  opacity: 0.2;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-weight: 600;
+}
+
+.gray_button {
+  background-color: var(--color-secondary);
+  border: none;
+}
+
+.list {
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.list li {
+  display: block;
+}
+
+.list li span {
+  margin-left: 5px
+}
+
+.mb_50 {
+  margin-bottom: 50px;
+}
+
+.mb_50 p {
+  margin-bottom: 0;
+}
