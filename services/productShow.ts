@@ -1,14 +1,5 @@
 import api from './api';
-import Product from '../dtos/Product';
-
-type ProductShow = {
-  sells_count: number;
-  favorited_count: number;
-} & Product;
-
-interface ProductShowData {
-  product: ProductShow;
-}
+import ProductShowData from '../dtos/ProductShowData';
 
 const ProductShowService = {
   show: (url: string) => {

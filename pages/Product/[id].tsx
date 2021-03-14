@@ -14,9 +14,15 @@ import ProductShowService from '../../services/productShow';
 import { toast } from 'react-toastify';
 import { format, parseJSON } from 'date-fns';
 
-const Product: React.FC = () => {
+import ProductShowData from '../../dtos/ProductShowData';
+
+const Product: React.FC<ProductShowData> = ({ product }) => {
   const router = useRouter();
-  const { data, error } = useSwr(`/storefront/v1/products/${router?.query?.id}`, ProductShowService.show);
+  const { data, error } = useSwr(
+    `/storefront/v1/products/${router?.query?.id}`, 
+    ProductShowService.show,
+    { initialData: product }
+  );
 
   if (error) {
     toast.error('Erro ao obter o produto');
@@ -156,6 +162,11 @@ const Product: React.FC = () => {
       </Row>
     </MainComponent>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  const product = await ProductShowService.show(`/storefront/v1/products/${params.id}`);
+  return { props: product };
 }
 
 export default Product;
