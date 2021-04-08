@@ -1,0 +1,18 @@
+.blue_text {
+  color: var(--color-blue-light);
+}
+
+.input_background {
+  background-color: var(--color-secondary);
+  border: none;
+  border-radius:  5px;
+}
+
+.input_background:focus {
+  background-color: var(--color-secondary);
+}
+
+.form input,
+.form input:focus {
+  color: white;
+}
