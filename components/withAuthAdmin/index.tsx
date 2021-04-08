@@ -11,18 +11,24 @@ const withAuthAdmin = (Component) => {
     const router = useRouter();
     const loggedUser: User = useSelector((state: AuthState) => state.auth.loggedUser);
     
-    //TODO if cookie don't exists redirect to login
-    const apiData: ApiData = JSON.parse(Cookie.get('@api-data'));
+    const apiDataCookie = Cookie.get('@api-data');
+    const apiData: ApiData = apiDataCookie ? JSON.parse(apiDataCookie) : null;
 
     // checando se o usuário existe no redux e se o mesmo é admin
     // checando se os dados da api existem no cookie e ainda se existe
     // o access-token salvo.
-    if(!loggedUser || 
-      loggedUser.profile !== 'admin' ||
-      !apiData ||
-      !apiData['access-token'] ||
-      apiData['aceess-token'] === '') {
-      router.push('/Auth/Login')
+    if (!loggedUser || 
+        loggedUser.profile !== 'admin' ||
+        !apiData ||
+        !apiData['access-token'] ||
+        apiData['aceess-token'] === ''
+    ) {
+      router.push({
+        pathname: '/Auth/Login',
+        query: {
+          callback: router.pathname
+        }
+      })
     }
 
     return <Component {...props} />;
