@@ -58,7 +58,11 @@ const LoginForm: React.FC<LoginProps> = ({ titlePhrase, buttonPhrase }) => {
 
       toast.info('Login realizado com sucesso!');
 
-      router.push(user.profile === 'admin' ? '/Admin' : '/')
+      if (router.query.callback) {
+        router.push(decodeURIComponent(router.query.callback.toString()));
+      } else {
+        router.push(user.profile === 'admin' ? '/Admin' : '/')
+      }
     } catch (err) {
       toast.error('E-mail ou senha inválidos!');
     }
