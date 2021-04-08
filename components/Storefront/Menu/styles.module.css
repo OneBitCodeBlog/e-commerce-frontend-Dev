@@ -1,0 +1,13 @@
+.container a {
+  font-weight: 600;
+}
+
+.active {
+  color: var(--color-active);
+}
+
+@media screen and (max-width: 768px) {
+  .container a {
+    font-size: 0.9rem;
+  }
+}
