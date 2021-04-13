@@ -18,7 +18,7 @@ const AdminHeader: React.FC = () => {
 
   return (
     <Row className={styles.background}>
-      <Col lg={6} xs={12} className={styles.menu}>
+      <Col xs={12} className={styles.menu}>
         <Link href="/Admin">
           <a>
             <FontAwesomeIcon 
@@ -94,11 +94,13 @@ const AdminHeader: React.FC = () => {
               className="ml-3" />
           </a>
         </Link>
-      </Col>
 
-      <Col lg={6} xs={3} className={styles.profile}>
-        <span className={styles.name}>{name}</span>
-        <FontAwesomeIcon icon={faUserCircle} color="var(--color-gray-light)" />
+        <Link href="/Profile">
+          <a className={styles.profile}>
+            <span className={styles.name}>{name}</span>
+            <FontAwesomeIcon icon={faUserCircle} color="var(--color-gray-light)" />
+          </a>
+        </Link>
       </Col>
     </Row>
   )
