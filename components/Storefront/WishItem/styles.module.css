@@ -16,6 +16,19 @@
   background-color: var(--color-secondary);
 }
 
+.icon {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon:hover {
+  color: #ff0a0a;
+}
+
+.icon:active {
+  color: #ff5f5f;
+}
+
 @media screen and (max-width: 768px) {
   .action {
     text-align: center;
