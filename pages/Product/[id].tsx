@@ -16,6 +16,9 @@ import { format, parseJSON } from 'date-fns';
 
 import ProductShowData from '../../dtos/ProductShowData';
 
+import LoggedService from '../../util/LoggedService';
+import WishlistService from '../../services/wishlist';
+
 const Product: React.FC<ProductShowData> = ({ product }) => {
   const router = useRouter();
   const { data, error } = useSwr(
@@ -27,6 +30,27 @@ const Product: React.FC<ProductShowData> = ({ product }) => {
   if (error) {
     toast.error('Erro ao obter o produto');
     console.log(error);
+  }
+
+  const handleWishitem = async (): Promise<void> => {
+    if (LoggedService.execute()) {
+      try {
+        await WishlistService.add(data?.id);
+        toast.info('Adicionado a sua lista de desejos!');
+      } catch (error) {
+        toast.error('Erro ao adicionar a sua lista de desejos.');
+        console.log(error);
+      }
+
+      return;
+    }
+
+    router.push({
+      pathname: '/Auth/Login',
+      query: {
+        callback: router.pathname.replace('[id]', data?.id.toString())
+      }
+    });
   }
 
   return (
@@ -115,7 +139,13 @@ const Product: React.FC<ProductShowData> = ({ product }) => {
 
             <Row className="mt-4 text-center">
               <Col>
-                <StyledButton className={styles.gray_button} icon={faHeart} action="Favoritar" type_button="red" />
+                <StyledButton 
+                  className={styles.gray_button} 
+                  icon={faHeart} 
+                  action="Favoritar" 
+                  type_button="red" 
+                  onClick={handleWishitem}
+                />
               </Col>
 
               <Col>
