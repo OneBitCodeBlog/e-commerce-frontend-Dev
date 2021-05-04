@@ -19,6 +19,9 @@ import ProductShowData from '../../dtos/ProductShowData';
 import LoggedService from '../../util/LoggedService';
 import WishlistService from '../../services/wishlist';
 
+import { useDispatch } from 'react-redux';
+import { addCartProduct } from '../../store/modules/storefront/cartProducts/reducer';
+
 const Product: React.FC<ProductShowData> = ({ product }) => {
   const router = useRouter();
   const { data, error } = useSwr(
@@ -26,6 +29,8 @@ const Product: React.FC<ProductShowData> = ({ product }) => {
     ProductShowService.show,
     { initialData: product }
   );
+
+  const dispatch = useDispatch();
 
   if (error) {
     toast.error('Erro ao obter o produto');
@@ -149,7 +154,12 @@ const Product: React.FC<ProductShowData> = ({ product }) => {
               </Col>
 
               <Col>
-                <StyledButton icon={faCartPlus} action="Comprar" type_button="blue" />
+                <StyledButton 
+                  icon={faCartPlus} 
+                  action="Comprar" 
+                  type_button="blue" 
+                  onClick={() => dispatch(addCartProduct(data))}
+                />
               </Col>
             </Row>
           </BlueBackground>
