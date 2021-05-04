@@ -10,9 +10,11 @@ import { useRouter } from 'next/router';
 import LoggedService from '../../../../util/LoggedService';
 
 import Badge from '../../Badge';
+import CartModal from '../../../Storefront/CartModal';
 
 const CustomerHeader: React.FC = () => {
   const [search, setSearch] = useState('');
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const router = useRouter();
 
@@ -70,9 +72,17 @@ const CustomerHeader: React.FC = () => {
               </Col>
 
               <Col>
-                <div>
-                  <FontAwesomeIcon icon={faShoppingCart} color="var(--color-gray-light)" />
+                <div className={styles.cart_container}>
+                  <FontAwesomeIcon 
+                    icon={faShoppingCart} 
+                    color="var(--color-gray-light)" 
+                    onClick={() => setShowCartModal(!showCartModal)}
+                  />
                   <Badge>5</Badge>
+                  {
+                    showCartModal &&
+                      <CartModal searchPage={router.pathname === '/Search'} />
+                  }
                 </div>
               </Col>
 

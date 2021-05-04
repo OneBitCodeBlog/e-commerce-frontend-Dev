@@ -35,3 +35,8 @@
   color: var(--color-gray-light);
   font-size: 0.8em;
 }
+
+.name {
+  font-size: 14px;
+  margin-bottom: 5px;
+}

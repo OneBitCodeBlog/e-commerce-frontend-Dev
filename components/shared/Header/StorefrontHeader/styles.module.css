@@ -21,3 +21,8 @@
 .hidden {
   display: none;
 }
+
+.cart_container {
+  max-width: 72px;
+  margin: 0 auto;
+}

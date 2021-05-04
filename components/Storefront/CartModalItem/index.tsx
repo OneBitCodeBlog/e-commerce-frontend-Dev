@@ -12,20 +12,20 @@ const CartModalItem: React.FC = () => {
         </Col>
 
         <Col xs={7}>
-          <p>
+          <p className={styles.name}>
             God of War
           </p>
 
-          <div className={styles.badge_container}>
-            <Badge variant="primary ml-1" className={styles.badfe}>
+          <div className={styles.badges_container}>
+            <Badge variant="primary ml-1" className={styles.badge}>
               Ação
             </Badge>
 
-            <Badge variant="primary ml-1" className={styles.badfe}>
+            <Badge variant="primary ml-1" className={styles.badge}>
               Ação
             </Badge>
 
-            <Badge variant="primary ml-1" className={styles.badfe}>
+            <Badge variant="primary ml-1" className={styles.badge}>
               Ação
             </Badge>
           </div>
