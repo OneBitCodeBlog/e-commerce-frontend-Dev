@@ -14,7 +14,7 @@ import styles from './styles.module.css';
 import withAuth from '../../components/withAuth';
 import { useSelector, useDispatch } from 'react-redux';
 import User from '../../dtos/User';
-import UsersService from '../../services/users';
+import ProfileService from '../../services/profile';
 import { setLoggedUser } from '../../store/modules/auth/reducer';
 
 import { toast } from 'react-toastify';
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
     evt.preventDefault();
 
     try {
-      await UsersService.update({
+      await ProfileService.update({
         name, 
         email,
         password,

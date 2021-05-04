@@ -68,7 +68,8 @@ api.interceptors.request.use(req => {
 
   if (
     req.url.includes('admin') ||
-    req.url.includes('storefront/v1/wish_items')
+    req.url.includes('storefront/v1/wish_items') ||
+    req.url.includes('auth/v1/user')
   ) {
     const apiDataCookie = Cookie.get('@api-data');
 
