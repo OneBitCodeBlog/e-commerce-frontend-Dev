@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 
 import LoggedService from '../../../../util/LoggedService';
 
+import Badge from '../../Badge';
+
 const CustomerHeader: React.FC = () => {
   const [search, setSearch] = useState('');
 
@@ -68,7 +70,10 @@ const CustomerHeader: React.FC = () => {
               </Col>
 
               <Col>
-                <FontAwesomeIcon icon={faShoppingCart} color="var(--color-gray-light)" />
+                <div>
+                  <FontAwesomeIcon icon={faShoppingCart} color="var(--color-gray-light)" />
+                  <Badge>5</Badge>
+                </div>
               </Col>
 
               <Col>
