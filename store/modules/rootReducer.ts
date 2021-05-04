@@ -9,6 +9,8 @@ import user from './admin/user/reducer';
 
 import search from './admin/shared/search/reducer';
 
+import cartProducts from './storefront/cartProducts/reducer';
+
 export default combineReducers({
     auth,
     category,
@@ -16,5 +18,6 @@ export default combineReducers({
     systemRequirement,
     coupon,
     user,
-    search
+    search,
+    cartProducts
 });

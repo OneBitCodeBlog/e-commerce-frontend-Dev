@@ -1,10 +1,5 @@
-import Product from './Product';
-
-type ProductShow = {
-  sells_count: number;
-  favorited_count: number;
-} & Product;
+import ProductShow from './ProductShow';
 
 export default interface ProductShowData {
-  product:ProductShow
+  product: ProductShow
 };
