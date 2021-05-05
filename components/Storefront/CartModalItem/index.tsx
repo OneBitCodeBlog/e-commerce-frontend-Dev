@@ -23,7 +23,7 @@ const CartModalItem: React.FC<CartModalItemProps> = ({product, handleRemove}) =>
         </Col>
 
         <Col xs={7}>
-          <p className={styles.name}>
+          <p>
             {product.name}
           </p>
 

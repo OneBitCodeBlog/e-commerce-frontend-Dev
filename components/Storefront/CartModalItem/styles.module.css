@@ -36,7 +36,9 @@
   font-size: 0.8em;
 }
 
-.name {
-  font-size: 14px;
-  margin-bottom: 5px;
+.container p {
+  font-size: 0.7em;
+  font-weight: 600;
+  max-width: 250px;
+  margin-bottom: 0px;
 }
