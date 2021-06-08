@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import withAuth from '../../components/withAuth';
 
+import CheckoutForm from '../../components/Storefront/CheckoutForm';
+
 const Cart: React.FC = () => {
   return (
     <MainComponent>
@@ -124,6 +126,8 @@ const Cart: React.FC = () => {
               />
             </div>
           </div>
+
+          <CheckoutForm />
         </Col>
       </Row>
     </MainComponent>
