@@ -6,12 +6,20 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 
 import styles from './styles.module.css';
-import React from 'react';
+import MaskedInput from 'react-text-mask';
 
 const CheckoutForm: React.FC = () => {
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
+  }
+
+  const documentMask = (value) => {
+    if (value.replace(/\D/gi, '').length <= 11) {
+      return [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+    }
+
+    return [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   }
 
   return (
@@ -20,10 +28,11 @@ const CheckoutForm: React.FC = () => {
         <strong>CPF/CNPJ:</strong>
         <hr className={styles.line} />
 
-        <input 
+        <MaskedInput 
           type="text" 
           className={`${styles.gray_input} w-100 mb-4`}
           placeholder="CPF/CNPJ"
+          mask={documentMask}
           required
         />
 
@@ -82,10 +91,16 @@ const CheckoutForm: React.FC = () => {
         <div className="mt-4">
           <strong>Número do cartão</strong>
 
-          <input 
+          <MaskedInput 
             type="text" 
             placeholder="XXXX XXXX XXXX XXXX" 
             className={styles.gray_input} 
+            mask={[
+              /\d/, /\d/, /\d/, /\d/, ' ',
+              /\d/, /\d/, /\d/, /\d/, ' ',
+              /\d/, /\d/, /\d/, /\d/, ' ',
+              /\d/, /\d/, /\d/, /\d/
+            ]}
           />
         </div>
 
@@ -121,10 +136,11 @@ const CheckoutForm: React.FC = () => {
 
             <Col xs={4}>
               <strong>Código</strong>
-              <input 
+              <MaskedInput 
                 type="text" 
                 placeholder="XXX" 
                 className={`${styles.gray_input} w-100`} 
+                mask={[/\d/, /\d/, /\d/]}
               />
             </Col>
           </Row>
@@ -186,19 +202,21 @@ const CheckoutForm: React.FC = () => {
           <Row className="mt-4">
             <Col>
               <strong>Estado</strong>
-              <input 
+              <MaskedInput
                 type="text" 
                 placeholder="Estado" 
                 className={`${styles.gray_input} w-100`} 
+                mask={[/[a-zA-Z]/, /[a-zA-Z]/]}
               />
             </Col>
 
             <Col>
               <strong>CEP</strong>
-              <input 
+              <MaskedInput 
                 type="text" 
                 placeholder="00000-000" 
                 className={`${styles.gray_input} w-100`} 
+                mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
               />
             </Col>
           </Row>
