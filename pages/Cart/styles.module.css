@@ -1,0 +1,86 @@
+.product {
+  margin-top: 30px;
+}
+
+.product {
+  display: block;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.icon {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon:hover {
+  color: var(--color-hover);
+}
+
+.icon:active {
+  color: var(--color-active);
+}
+
+.gray_input {
+  background-color: var(--color-secondary);
+  border: none;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.gray_select {
+  background-color: var(--color-secondary);
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+}
+
+.gray_button {
+  background-color: var(--color-secondary);
+  border: none;
+}
+
+.payment div {
+  margin-right: 5px !important;
+  margin-top: 5px !important;
+}
+
+.payment_column {
+  margin-top: 20px;
+}
+
+.back_button {
+  height: 50px;
+}
+
+.line {
+  background-color: white;
+  opacity: 0.2;
+}
+
+.primary_badge {
+  opacity: 0.6;
+  background-color: var(--color-secondary);
+}
+
+.coupon {
+  margin-bottom: 20px;
+}
+
+.price_and_discount {
+  text-align: right;
+}
+
+.blue_text {
+  color: var(--color-blue-light);
+  text-align: right;
+  padding-left: 2px;
+}
