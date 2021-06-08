@@ -1,4 +1,5 @@
-import { Col, Row, Badge, Form } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Col, Row, Badge } from 'react-bootstrap';
 import BlueBackground from '../../components/shared/BlueBackground';
 import MainComponent from '../../components/shared/MainComponent';
 import StyledButton from '../../components/shared/StyledButton';
@@ -15,7 +16,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeCartProduct } from '../../store/modules/storefront/cartProducts/reducer';
 import ProductShow from '../../dtos/ProductShow';
 
+import ValidateCouponService from '../../services/validateCoupon';
+import { toast } from 'react-toastify';
+import Coupon from '../../dtos/Coupon';
+
 const Cart: React.FC = () => {
+  const [coupon, setCoupon] = useState<Coupon>();
+  const [couponCode, setCouponCode] = useState('');
+  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+
   const dispatch = useDispatch();
   const cartProducts: ProductShow[] = useSelector(state => state.cartProducts);
 
