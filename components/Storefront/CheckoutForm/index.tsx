@@ -8,6 +8,8 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import MaskedInput from 'react-text-mask';
 
+import MonthsService from '../../../util/MonthsService';
+
 const CheckoutForm: React.FC = () => {
 
   const handleSubmit = async (evt: React.FormEvent) => {
@@ -115,9 +117,17 @@ const CheckoutForm: React.FC = () => {
                     className={styles.gray_select}
                   >
                     <option value="">Mês</option>
-                    <option>Janeiro</option>
-                    <option>Fevereiro</option>
-                    <option>Março</option>
+                    {
+                      MonthsService.execute().map(
+                        (month, index) => 
+                          <option 
+                            key={index}
+                            value={index + 1}
+                          >
+                            {month}
+                          </option>
+                      )
+                    }
                   </select>
                 </Col>
 
@@ -126,9 +136,17 @@ const CheckoutForm: React.FC = () => {
                     className={styles.gray_select}
                   >
                     <option value="">Ano</option>
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option>2023</option>
+                    {
+                      new Array(6).fill(0).map(
+                        (_, index) =>
+                          <option
+                            key={index}
+                            value={new Date().getFullYear() + index}
+                          >
+                            {new Date().getFullYear() + index}
+                          </option>
+                      )
+                    }
                   </select>
                 </Col>
               </Row>
