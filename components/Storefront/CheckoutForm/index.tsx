@@ -11,7 +11,15 @@ import MaskedInput from 'react-text-mask';
 
 import MonthsService from '../../../util/MonthsService';
 
-const CheckoutForm: React.FC = () => {
+import JunoService from '../../../util/JunoService';
+import Checkout from '../../../dtos/Checkout';
+
+interface CheckoutFormProps {
+  total: number;
+  handleFormSubmit(checkout: Checkout): Promise<void>;
+}
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({total, handleFormSubmit}) => {
   const [document, setDocument] = useState('');
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
@@ -35,6 +43,38 @@ const CheckoutForm: React.FC = () => {
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
+
+    let checkout: Checkout = {
+      document,
+      payment_type: paymentType,
+      installments: installments || "1",
+      items:[]
+    };
+
+    if (paymentType === 'credit_card') {
+      try {
+        const cardHard = await JunoService.execute({
+          cardNumber: cardNumber.replace(/\s/gi, ''),
+          holderName,
+          expirationMonth,
+          expirationYear,
+          securityCode
+        });
+
+        checkout['card_hash'] = cardHard;
+        checkout['address'] = {
+          street,
+          number,
+          city,
+          state,
+          'post_code': postCode
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    await handleFormSubmit(checkout);
   }
 
   const documentMask = (value) => {
@@ -259,7 +299,23 @@ const CheckoutForm: React.FC = () => {
                   disabled={!creditCard}
                 >
                   <option value="">Selecione</option>
-                  <option>1x 188.82 (188.82)</option>
+                  {
+                    new Array(12).fill(0).map(
+                      (_, index) =>
+                        <option 
+                          key={index}
+                          value={index + 1}
+                        >
+                          {
+                            `
+                              ${index + 1}x de
+                              ${(total / (index + 1)).toFixed(2)}
+                              (${((total / (index + 1)) * (index + 1)).toFixed(2)})
+                            `
+                          }
+                        </option>
+                    )
+                  }
                 </select>
               </div>
             </div>
@@ -366,7 +422,7 @@ const CheckoutForm: React.FC = () => {
         <div>
           <strong>VALOR TOTAL</strong>
           <strong className="float-right">
-            R$ 188.82
+            {`R$ ${total.toFixed(2)}`}
           </strong>
         </div>
 
