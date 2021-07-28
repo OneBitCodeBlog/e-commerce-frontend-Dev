@@ -9,13 +9,16 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css';
+import Game from '../../../dtos/Game';
 
 interface ProductLicensesModalProps {
   show: boolean;
   onHide: () => void;
+  selectedProduct?: Game;
 }
 
-const ProductLicensesModal: React.FC<ProductLicensesModalProps> = ({ show, onHide }) => {
+const ProductLicensesModal: React.FC<ProductLicensesModalProps> = 
+  ({ show, onHide, selectedProduct }) => {
   return (
     <Modal
       show={show}
@@ -26,25 +29,32 @@ const ProductLicensesModal: React.FC<ProductLicensesModalProps> = ({ show, onHid
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          Cuphead - "Don't deal with de the Devil"
+          {selectedProduct?.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row>
           <Col>
             <strong>Chaves de Ativação</strong>
-            <InputGroup className="mb-2">
-              <InputGroup.Prepend>
-                <InputGroup.Text className={styles.key_input}>
-                  <FontAwesomeIcon icon={faKey} />
-                </InputGroup.Text>
-              </InputGroup.Prepend>
+            {
+              selectedProduct?.licenses.map(
+                (license, index) => 
+                  <InputGroup className="mb-2" key={index}>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text className={styles.key_input}>
+                        <FontAwesomeIcon icon={faKey} />
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
 
-              <FormControl 
-                placeholder="Chave"
-                className={styles.key_input}
-              />
-            </InputGroup>
+                    <FormControl 
+                      placeholder="Chave"
+                      className={styles.key_input}
+                      defaultValue={license}
+                      disabled
+                    />
+                  </InputGroup>
+              )
+            }
           </Col>
         </Row>
       </Modal.Body>
