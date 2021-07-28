@@ -1,0 +1,23 @@
+.table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+.table_line {
+  background-color: var(--color-background);
+  padding-right: 110px;
+}
+
+.table tr,
+.table th,
+.table td {
+  color: white;
+}
+
+.table td {
+  width: 20%;
+}
+
+.secondary_color {
+  color: var(--color-gray-light);
+}
