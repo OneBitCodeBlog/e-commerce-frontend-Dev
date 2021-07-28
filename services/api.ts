@@ -71,7 +71,8 @@ api.interceptors.request.use(req => {
     req.url.includes('storefront/v1/wish_items') ||
     req.url.includes('auth/v1/user') ||
     req.url.includes('storefront/v1/coupons') ||
-    req.url.includes('storefront/v1/checkouts')
+    req.url.includes('storefront/v1/checkouts') ||
+    req.url.includes('storefront/v1/orders')
   ) {
     const apiDataCookie = Cookie.get('@api-data');
 
