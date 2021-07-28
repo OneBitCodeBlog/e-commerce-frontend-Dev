@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ tab }) => {
       </Col>
 
       <Col sm={3} xs={6}>
-        <Link href="/Orders">
+        <Link href="/Orders/List">
           <a className={(tab === 'orders' ? styles.active : undefined)}>
             Meus Pedidos
           </a>

@@ -20,10 +20,10 @@ const OrdersList: React.FC<OrdersListProps> = ({orders, admin=false}) => {
     >
       <thead>
         <tr>
-          <tr>Número</tr>
-          <tr>Pagamento</tr>
-          <tr>Valor</tr>
-          <tr>Situação</tr>
+          <th>Número</th>
+          <th>Pagamento</th>
+          <th>Valor</th>
+          <th>Situação</th>
         </tr>
       </thead>
 
