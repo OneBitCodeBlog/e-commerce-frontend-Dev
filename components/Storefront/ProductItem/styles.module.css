@@ -1,0 +1,16 @@
+.product {
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.product span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.product img {
+  height: 200px;
+}
