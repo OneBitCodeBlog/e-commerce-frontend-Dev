@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import MainComponent from '../../components/shared/MainComponent';
 import Menu from '../../components/Storefront/Menu';
-import Product from '../../components/Storefront/ProductItem';
+import Product from '../../components/Storefront/Product';
 
 import Pagination from '../../components/shared/Pagination';
 import styles from './styles.module.css';

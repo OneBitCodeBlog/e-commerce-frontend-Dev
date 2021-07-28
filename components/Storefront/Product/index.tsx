@@ -1,8 +1,13 @@
 import { HTMLAttributes } from "react";
 import { Col } from "react-bootstrap";
 import styles from './styles.module.css';
+import Game from '../../../dtos/Game';
 
-const ProductItem: React.FC<HTMLAttributes<HTMLDivElement>> = ({...rest}) => {
+type ProductProps = {
+  product: Game;
+} & HTMLAttributes<HTMLDivElement>;
+
+const Product: React.FC<ProductProps> = ({ product, ...rest }) => {
   return (
     <Col 
       className={styles.product}
@@ -10,8 +15,8 @@ const ProductItem: React.FC<HTMLAttributes<HTMLDivElement>> = ({...rest}) => {
     >
       <div>
         <img 
-          src="https://meups.com.br/wp-content/uploads/2018/01/God-of-War-4-900x503.jpg" 
-          alt="Product Name" 
+          src={product?.image_url} 
+          alt={product?.name} 
           className="w-100"
         />
       </div>
@@ -19,11 +24,11 @@ const ProductItem: React.FC<HTMLAttributes<HTMLDivElement>> = ({...rest}) => {
       <div>
         <div>
           <span>
-            God of War
+            {product?.name}
           </span>
 
           <span>
-            Rem assumenda illum voluptatibus doloribus illo.
+            {product?.description}
           </span>
         </div>
       </div>
@@ -31,4 +36,4 @@ const ProductItem: React.FC<HTMLAttributes<HTMLDivElement>> = ({...rest}) => {
   );
 }
 
-export default ProductItem;
+export default Product;
