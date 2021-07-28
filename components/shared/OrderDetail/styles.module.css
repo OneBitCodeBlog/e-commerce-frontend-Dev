@@ -1,0 +1,30 @@
+.line {
+  background-color: white;
+  opacity: 0.2;
+}
+
+.product img {
+  width: 150px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.primary_badge {
+  opacity: 0.6;
+  background-color: var(--color-secondary);
+}
+
+@media screen and (max-width: 767px) {
+  .product_name {
+    display: inline-block;
+    font-size: 0.9em;
+    max-width: 158px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .price {
+    font-size: 0.9em;
+  }
+}
