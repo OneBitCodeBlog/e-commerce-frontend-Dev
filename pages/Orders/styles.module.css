@@ -1,0 +1,12 @@
+.secondary_color {
+  color: var(--color-gray-light);
+}
+
+.button_blue_light {
+  color: var(--color-secondary);
+  background-color: var(--color-blue-light);
+}
+
+.blue_text {
+  color: var(--color-blue-light);
+}
