@@ -74,12 +74,13 @@ const AdminHeader: React.FC = () => {
           </a>
         </Link>
 
-        <Link href="#">
+        <Link href="/Admin/Orders/List">
           <a>
             <FontAwesomeIcon 
               icon={faDollarSign} 
               color="var(--color-gray-light)" 
-              className="ml-3" />
+              className={`ml-3 ${router.pathname === '/Admin/Orders/List' ? styles.active : ''}`} 
+            />
           </a>
         </Link>
 
