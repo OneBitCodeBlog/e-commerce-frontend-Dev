@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import { useRouter } from 'next/router';
 import UrlService from "../../../../util/UrlService";
 
+import withAuthAdmin from "../../../../components/withAuthAdmin";
+
 const defaultUrl = '/admin/v1/orders';
 
 const Orders: React.FC = () => {
@@ -48,4 +50,4 @@ const Orders: React.FC = () => {
   );
 }
 
-export default Orders;
+export default withAuthAdmin(Orders);
