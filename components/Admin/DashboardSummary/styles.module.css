@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+
+  height: 60px;
+  border: solid 2px white;
+  border-radius: 5px;
+}
+
+.card div span {
+  display: block;
+  font-weight: bold;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.card div span:first-of-type {
+  font-size: 1.3em;
+}
+
+@media screen and (max-width: 1085px) {
+  .card {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .card div span:first-of-type {
+    font-size: 0.8em;
+  }
+
+  .card svg {
+    font-size: 1em;
+  }
+}
