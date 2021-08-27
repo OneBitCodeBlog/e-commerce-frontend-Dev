@@ -1,0 +1,8 @@
+.container {
+  min-height: 425px;
+  text-align: left;
+  font-weight: bold;
+  background: var(--color-primary);
+  padding: 15px;
+  border-radius: 5px;
+}
