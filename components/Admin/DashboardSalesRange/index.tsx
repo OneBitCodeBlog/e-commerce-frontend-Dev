@@ -14,8 +14,8 @@ const DashboardGraphic: React.FC = () => {
 
   const { data, error } = useSwr(
     () => defaultUrl +
-      (min_date || max_date) ?
-      `?min_date=${min_date}&max_date=${max_date}` : '',
+      ((min_date || max_date) ?
+      `?min_date=${min_date}&max_date=${max_date}` : ''),
     DashboardSalesRangeService.index
   );
 

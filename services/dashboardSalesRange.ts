@@ -1,16 +1,17 @@
 import api from './api';
 
 interface SalesRangeItem {
-  [key: string]: number;
+  date: string;
+  total_sold: number;
 }
 
 interface DashboardSalesRange {
-  sales_range: SalesRangeItem[];
+  sales_ranges: SalesRangeItem[];
 }
 
 const DashboardSalesRangeService = {
   index(url: string) {
-    return api.get<DashboardSalesRange>(url).then(resp => resp.data.sales_range);
+    return api.get<DashboardSalesRange>(url).then(resp => resp.data.sales_ranges);
   }
 }
 

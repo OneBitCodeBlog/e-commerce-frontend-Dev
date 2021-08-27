@@ -60,19 +60,19 @@
   background: var(--color-active);
 }
 
-@media screen and(max-width: 1213px) {
+@media screen and (max-width: 1213px) {
   .header div:nth-of-type(2) div:first-of-type {
     border-right: none;
   }
 }
 
-@media screen and(max-width: 1211px) {
+@media screen and (max-width: 1211px) {
   .header  {
     margin-bottom: 30px;
   }
 }
 
-@media screen and(max-width: 991px) {
+@media screen and (max-width: 991px) {
   .header  {
     margin: 5px 0 35px 0;
     text-align: center;
