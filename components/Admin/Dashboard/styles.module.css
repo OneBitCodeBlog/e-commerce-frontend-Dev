@@ -1,0 +1,91 @@
+.header {
+  margin: 20px 0 10px 0;
+  text-align: left;
+}
+
+.header div:nth-of-type(2) {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.header div:nth-of-type(2) div:first-of-type {
+  margin-right: 5px;
+  border-right: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+.header h1 {
+  font-size: 1em;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 15px;
+  text-align: left;
+}
+
+.header input {
+  display: inline-block;
+  width: 120px;
+  margin: 0 5px;
+  font-size: 0.65em;
+  font-weight: bold;
+  background: var(--color-primary);
+  color: white;
+  outline: none;
+  border: none;
+}
+
+.header span {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.header button {
+  color: white;
+  background: var(--color-primary);
+  outline: none;
+  border: none;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0 5px;
+  transition: background 0.2s;
+}
+
+.header button:hover {
+  background: var(--color-hover);
+}
+
+.header button:active {
+  background: var(--color-active);
+}
+
+@media screen and(max-width: 1213px) {
+  .header div:nth-of-type(2) div:first-of-type {
+    border-right: none;
+  }
+}
+
+@media screen and(max-width: 1211px) {
+  .header  {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and(max-width: 991px) {
+  .header  {
+    margin: 5px 0 35px 0;
+    text-align: center;
+  }
+
+  .header div:nth-of-type(2) {
+    display: block;
+    text-align: center;
+    padding: 0;
+  }
+
+  .header div:nth-of-type(2) div:last-of-type {
+    display: block;
+  }
+}
+
